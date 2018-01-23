@@ -9,17 +9,46 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class DriverMainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 1;
+    private ArrayList<String> addresses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
+
+        addresses = new ArrayList<String>();
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+               R.layout.activity_listview,R.id.text_view_id, addresses);
+
+        ListView listView = (ListView) findViewById(R.id.mobile_list);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(addressClickedHandler);
+
     }
+
+    private AdapterView.OnItemClickListener addressClickedHandler = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id) {
+            String clickedAddress = addresses.get((int)parent.getItemIdAtPosition(position)).toString();
+            clickedAddress = clickedAddress.replace(' ','+');
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("https://www.google.com/maps/dir/?api=1&destination=" + clickedAddress));
+            startActivity(intent);
+
+        }
+    };
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -46,29 +75,25 @@ public class DriverMainActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String addressString = data.getStringExtra("ADDRESS_STRING");
                     if(!addressString.equals(null) && !addressString.equals("")){
-                        addNewAddress(addressString);
+                        addresses.add(addressString);
                     }
                 }
                 break;
             }
         }
     }
-    private void addNewAddress(final String addressString) {
-        Button myButton = new Button(this);
-        myButton.setText(addressString);
 
-        LinearLayout ll = (LinearLayout) findViewById(R.id.driverLinearLayout);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        ll.addView(myButton, lp);
-
-        myButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String formattedAddress = addressString.replace(' ','+');
-                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("https://www.google.com/maps/dir/?api=1&destination=" + formattedAddress));
-                startActivity(intent);
-            }
-        });
-    }
+//    private void routeAll(){
+//        String formattedAddress = addressString.replace(' ','+');
+//        String q = "10 gulliver st miramichi|9 dineen drive";
+//        String url = "";
+//        try{
+//            url = "&waypoints=" + URLEncoder.encode(q, "UTF-8");
+//        } catch(Exception e){
+//            System.out.print(e);
+//        }
+//        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+//                Uri.parse("https://www.google.com/maps/dir/?api=1&destination=725+george"+url));
+//        startActivity(intent);
+//    }
 }
