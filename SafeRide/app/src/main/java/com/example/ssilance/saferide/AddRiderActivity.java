@@ -73,10 +73,11 @@ public class AddRiderActivity extends Activity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
             } else {
-                    addressString = result.getContents();
-                    resultIntent = new Intent();
-                    resultIntent.putExtra("ADDRESS_STRING", addressString);
-                    finish();
+                addressString = result.getContents();
+                resultIntent = new Intent();
+                resultIntent.putExtra("ADDRESS_STRING", addressString);
+                setResult(Activity.RESULT_OK, resultIntent);
+                finish();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
