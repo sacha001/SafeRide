@@ -11,12 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 public class DriverMainActivity extends AppCompatActivity {
@@ -73,7 +70,7 @@ public class DriverMainActivity extends AppCompatActivity {
         switch(requestCode) {
             case (REQUEST_CODE) : {
                 if (resultCode == Activity.RESULT_OK) {
-                    String addressString = data.getStringExtra("ADDRESS_STRING");
+                    String addressString = data.getStringExtra("ADDRESS_STRING"); //TODO sometimes pauses here..
                     if(!addressString.equals(null) && !addressString.equals("")){
                         addresses.add(addressString);
                     }
