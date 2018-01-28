@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         configureDriverLoginBtn();
+        configureRiderLoginBtn();
     }
 
     private void configureDriverLoginBtn(){
@@ -22,6 +23,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, DriverMainActivity.class));
+            }
+        });
+    }
+
+    private void configureRiderLoginBtn(){
+        Button riderLoginBtn = (Button) findViewById(R.id.riderLoginBtn);
+        riderLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, RiderMainActivity.class));
             }
         });
     }

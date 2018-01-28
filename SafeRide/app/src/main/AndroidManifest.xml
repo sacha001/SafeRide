@@ -19,8 +19,15 @@
 
         <activity android:name=".DriverMainActivity"></activity>
 
+        <activity android:name=".RiderMainActivity"></activity>
+
         <activity
             android:name=".AddRiderActivity"
+            android:theme="@style/AppTheme.PopupTheme">
+        </activity>
+
+        <activity
+            android:name=".ProfileSettingsActivity"
             android:theme="@style/AppTheme.PopupTheme">
         </activity>
     </application>

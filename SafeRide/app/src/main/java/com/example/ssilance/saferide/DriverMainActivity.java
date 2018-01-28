@@ -70,7 +70,9 @@ public class DriverMainActivity extends AppCompatActivity {
         switch(requestCode) {
             case (REQUEST_CODE) : {
                 if (resultCode == Activity.RESULT_OK) {
+
                     String addressString = data.getStringExtra("ADDRESS_STRING"); //TODO sometimes pauses here..
+
                     if(!addressString.equals(null) && !addressString.equals("")){
                         addresses.add(addressString);
                     }
