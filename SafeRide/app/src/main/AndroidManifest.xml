@@ -30,6 +30,11 @@
             android:name=".ProfileSettingsActivity"
             android:theme="@style/AppTheme.PopupTheme">
         </activity>
+
+        <activity
+            android:name=".GenerateQRCodeActivity"
+            android:theme="@style/AppTheme.PopupTheme">
+        </activity>
     </application>
 
 </manifest>

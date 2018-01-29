@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:title="Show QR Code"
+        android:id="@+id/showQRCodeItem"
+        android:icon="@drawable/ic_blackberry_qr_code_variant"
+        app:showAsAction="ifRoom"
+        />
+    <item
         android:title="Profile Settings"
         android:id="@+id/profileSettingsItem"
         android:icon="@drawable/ic_settings_black_24px"

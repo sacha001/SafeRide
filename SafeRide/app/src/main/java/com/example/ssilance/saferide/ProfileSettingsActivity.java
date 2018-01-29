@@ -20,7 +20,7 @@ import java.io.FileOutputStream;
  * Created by Sacha on 2018-01-27.
  */
 
-public class ProfileSettingsActivity extends AppCompatActivity {
+public class ProfileSettingsActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,21 +44,9 @@ public class ProfileSettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText addressInput = (EditText) findViewById(R.id.addressInput);
                 String addressString = addressInput.getText().toString();
-                String jsonString = "";
-                try{
-                    jsonString = new JSONObject().put("Address", addressString).toString();
-                } catch (JSONException e){
-                    Toast.makeText(getApplicationContext(), "JSON Exception",
-                            Toast.LENGTH_SHORT).show();
-                }
 
-                try{
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                            .putString("PROFILE",jsonString.toString()).apply();
-                } catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "IO Exception",
-                            Toast.LENGTH_SHORT).show();
-                }
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
+                            .putString("ADDRESS",addressString).apply();
 
                 finish();
             }
