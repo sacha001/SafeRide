@@ -4,19 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="197dp"
+        android:background="#353434">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:layout_gravity="center_horizontal"
-            android:background="@android:color/white"
-            android:text="Add rider's address"
+
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:text="Enter address"
             android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="10dp"
+            android:ems="10"
+            android:hint="Name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/addressInput"
@@ -25,20 +43,24 @@
             android:layout_gravity="center"
             android:ems="10"
             android:hint="Address"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:inputType="textPersonName" />
 
         <Button
-        android:id="@+id/doneBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Done" />
+            android:id="@+id/doneBtn"
+            android:layout_width="149dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:text="Done" />
 
         <Button
             android:id="@+id/scanQRBtn"
-            android:layout_width="match_parent"
+            android:layout_width="149dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:text="Scan QR Code" />
 
     </LinearLayout>

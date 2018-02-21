@@ -1,10 +1,12 @@
+
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ssilance.saferide.DriverMainActivity">
+    tools:context="com.example.ssilance.saferide.DriverMainActivity"
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:id="@+id/driverLinearLayout"
@@ -15,27 +17,62 @@
         <ListView
             android:id="@+id/mobile_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:textColor ="@color/white"
+            >
         </ListView>
 
     </LinearLayout>
+
     <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="199dp"
+        tools:layout_editor_absoluteY="418dp">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/addAddressBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="14dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_person_add_black_24px" />
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/addQRBtn"
+            android:layout_alignStart="@+id/qrText"
+            android:layout_marginBottom="19dp"
+            android:ems="10"
+            android:text="ADD BY ADDRESS"
+            android:textColor="@color/white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addQRBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="right"
-            android:layout_marginBottom="35dp"
-            android:layout_marginEnd="35dp"
+            android:layout_alignStart="@+id/addAddressBtn"
+            android:layout_marginBottom="23dp"
             android:clickable="true"
-            app:backgroundTint="@android:color/holo_red_dark"
-            app:elevation="0dp"
-            app:srcCompat="@drawable/ic_play_arrow_black_24px" />
+            app:srcCompat="@drawable/ic_blackberry_qr_code_variant" />
+
+        <TextView
+            android:id="@+id/qrText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/addQRBtn"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@+id/addQRBtn"
+            android:ems="10"
+            android:text="ADD WITH QR CODE"
+            android:textColor="@color/white" />
+
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.constraint.RelativeLayout>

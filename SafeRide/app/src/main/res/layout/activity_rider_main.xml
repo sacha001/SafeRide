@@ -3,13 +3,50 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="16dp" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <Button
+            android:id="@+id/createProfileBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/viewProfileBtn"
+            android:layout_alignStart="@+id/viewProfileBtn"
+            android:layout_marginBottom="20dp"
+            android:text="Create Profile"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Button
+            android:id="@+id/viewProfileBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="View Profile"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <Button
+            android:id="@+id/qrBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/viewProfileBtn"
+            android:layout_marginBottom="165dp"
+            android:text="QR Code"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
