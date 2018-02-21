@@ -42,11 +42,15 @@ public class ProfileSettingsActivity extends Activity {
         driverLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText nameInput = (EditText) findViewById(R.id.nameInput);
                 EditText addressInput = (EditText) findViewById(R.id.addressInput);
+                String nameString = nameInput.getText().toString();
                 String addressString = addressInput.getText().toString();
 
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                            .putString("ADDRESS",addressString).apply();
+                        .putString("ADDRESS",addressString).apply();
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
+                        .putString("NAME",nameString).apply();
 
                 finish();
             }

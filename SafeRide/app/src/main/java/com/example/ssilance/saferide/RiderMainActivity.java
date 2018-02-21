@@ -29,14 +29,34 @@ public class RiderMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_main);
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button createProfile = (Button) findViewById(R.id.createProfileBtn);
+        createProfile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(RiderMainActivity.this, ProfileSettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button viewProfile = (Button) findViewById(R.id.viewProfileBtn);
+        viewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    String addressString = PreferenceManager.
-                            getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS","");
-                    Toast.makeText(getApplicationContext(), addressString,
-                            Toast.LENGTH_SHORT).show();
+                String addressString = PreferenceManager.
+                        getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS","");
+                String nameString = PreferenceManager.
+                        getDefaultSharedPreferences(getApplicationContext()).getString("NAME","");
+                String data = nameString + "\n" + addressString;
+                Toast.makeText(getApplicationContext(), data,
+                        Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        Button qrCode = (Button) findViewById(R.id.qrBtn);
+        qrCode.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent2 = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
+                startActivity(intent2);
             }
         });
     }
@@ -48,18 +68,19 @@ public class RiderMainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
+    /** @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.profileSettingsItem){
-            Intent intent = new Intent(RiderMainActivity.this, ProfileSettingsActivity.class);
-            startActivity(intent);
-            return true;
-        } else if(item.getItemId() == R.id.showQRCodeItem){
-            Intent intent = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
-            startActivity(intent);
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
+    if(item.getItemId() == R.id.createProfileBtn){
+    Intent intent = new Intent(RiderMainActivity.this, ProfileSettingsActivity.class);
+    startActivity(intent);
+    return true;
+    } else if(item.getItemId() == R.id.qrBtn){
+    Intent intent = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
+    startActivity(intent);
+    return true;
+    } else {
+    return super.onOptionsItemSelected(item);
     }
+    }
+     */
 }
