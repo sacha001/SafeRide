@@ -18,6 +18,7 @@ import com.google.zxing.integration.android.IntentResult;
  */
 
 public class AddRiderActivity extends Activity {
+    private String nameString;
     private String addressString;
     private Intent resultIntent;
 
@@ -43,9 +44,12 @@ public class AddRiderActivity extends Activity {
         driverLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText nameInput = (EditText) findViewById(R.id.nameInput);
                 EditText addressInput = (EditText) findViewById(R.id.addressInput);
+                nameString = nameInput.getText().toString();
                 addressString = addressInput.getText().toString();
                 resultIntent = new Intent();
+                resultIntent.putExtra("NAME_STRING", nameString);
                 resultIntent.putExtra("ADDRESS_STRING", addressString);
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();

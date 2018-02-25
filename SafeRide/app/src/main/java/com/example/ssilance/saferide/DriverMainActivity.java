@@ -14,18 +14,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DriverMainActivity extends AppCompatActivity {
     private static final int ADD_BY_ADDRESS = 1;
     private static final int ADD_BY_QR = 49374;
 
-    private ArrayList<String> addresses;
+    private ArrayList<Map<String,String>> riderData;
     private IntentIntegrator qrScan;
 
     @Override
@@ -33,9 +36,10 @@ public class DriverMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
 
-        addresses = new ArrayList<String>();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview,R.id.text_view_id, addresses);
+        riderData = new ArrayList<Map<String,String>>();
+        String[] from = { "name", "address" };
+        int[] to = { R.id.nameText, R.id.addressText };
+        SimpleAdapter adapter = new SimpleAdapter(this, riderData, R.layout.activity_listview, from, to);
 
         ListView listView = (ListView) findViewById(R.id.mobile_list);
         listView.setAdapter(adapter);
@@ -64,7 +68,8 @@ public class DriverMainActivity extends AppCompatActivity {
 
     private AdapterView.OnItemClickListener addressClickedHandler = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView parent, View v, int position, long id) {
-            String clickedAddress = addresses.get((int)parent.getItemIdAtPosition(position)).toString();
+            String clickedAddress = riderData.get((int)parent.getItemIdAtPosition(position)).get("address").toString();
+
             clickedAddress = clickedAddress.replace(' ','+');
             Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                     Uri.parse("https://www.google.com/maps/dir/?api=1&destination=" + clickedAddress));
@@ -97,10 +102,14 @@ public class DriverMainActivity extends AppCompatActivity {
             case (ADD_BY_ADDRESS) : {
                 if (resultCode == Activity.RESULT_OK) {
 
+                    String nameString = data.getStringExtra("NAME_STRING");
                     String addressString = data.getStringExtra("ADDRESS_STRING"); //TODO sometimes pauses here..
 
                     if(!addressString.equals(null) && !addressString.equals("")){
-                        addresses.add(addressString);
+                        Map m = new HashMap();
+                        m.put("name",nameString);
+                        m.put("address",addressString);
+                        riderData.add(m);
                     }
                 }
 
@@ -112,7 +121,7 @@ public class DriverMainActivity extends AppCompatActivity {
                     if (result.getContents() == null) {
                         Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
                     } else {
-                        addresses.add(result.getContents());
+                        //addresses.add(result.getContents());
                     }
                 } else {
                     super.onActivityResult(requestCode, resultCode, data);
