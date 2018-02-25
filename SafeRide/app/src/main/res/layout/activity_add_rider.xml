@@ -55,14 +55,6 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:text="Done" />
 
-        <Button
-            android:id="@+id/scanQRBtn"
-            android:layout_width="149dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:text="Scan QR Code" />
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

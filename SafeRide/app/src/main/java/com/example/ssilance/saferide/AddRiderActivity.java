@@ -18,7 +18,6 @@ import com.google.zxing.integration.android.IntentResult;
  */
 
 public class AddRiderActivity extends Activity {
-    private IntentIntegrator qrScan;
     private String addressString;
     private Intent resultIntent;
 
@@ -37,7 +36,6 @@ public class AddRiderActivity extends Activity {
         getWindow().setLayout((int) (width * 0.8), (int) (height * 0.5));
 
         configureDoneBtn();
-        configureScanQRBtn();
     }
 
     private void configureDoneBtn() {
@@ -55,33 +53,5 @@ public class AddRiderActivity extends Activity {
         });
     }
 
-    private void configureScanQRBtn() {
-        Button scanQRBtn = (Button) findViewById(R.id.scanQRBtn);
-        qrScan = new IntentIntegrator(this);
-        scanQRBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                qrScan.initiateScan();
-            }
-        });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
-            if (result.getContents() == null) {
-                Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
-            } else {
-                addressString = result.getContents();
-                resultIntent = new Intent();
-                resultIntent.putExtra("ADDRESS_STRING", addressString);
-                setResult(Activity.RESULT_OK, resultIntent);
-                finish();
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 }
 

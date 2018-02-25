@@ -17,11 +17,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
 public class DriverMainActivity extends AppCompatActivity {
-    private static final int REQUEST_CODE = 1;
+    private static final int ADD_BY_ADDRESS = 1;
+    private static final int ADD_BY_QR = 49374;
+
     private ArrayList<String> addresses;
     private IntentIntegrator qrScan;
 
@@ -43,29 +46,20 @@ public class DriverMainActivity extends AppCompatActivity {
         addAddress.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
+                startActivityForResult(intent, ADD_BY_ADDRESS);
             }
         });
 
         FloatingActionButton qrAdd = (FloatingActionButton) findViewById(R.id.addQRBtn);
         qrAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
-            }
-        });
-
-    }
-
-    private void configureScanQRBtn() {
-        Button scanQRBtn = (Button) findViewById(R.id.scanQRBtn);
-        qrScan = new IntentIntegrator(this);
-        scanQRBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                qrScan = new IntentIntegrator(DriverMainActivity.this);
                 qrScan.initiateScan();
+//                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
+//                startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
     }
 
     private AdapterView.OnItemClickListener addressClickedHandler = new AdapterView.OnItemClickListener() {
@@ -100,7 +94,7 @@ public class DriverMainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode) {
-            case (REQUEST_CODE) : {
+            case (ADD_BY_ADDRESS) : {
                 if (resultCode == Activity.RESULT_OK) {
 
                     String addressString = data.getStringExtra("ADDRESS_STRING"); //TODO sometimes pauses here..
@@ -109,22 +103,23 @@ public class DriverMainActivity extends AppCompatActivity {
                         addresses.add(addressString);
                     }
                 }
+
                 break;
             }
+            case (ADD_BY_QR) : {
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+                if (result != null) {
+                    if (result.getContents() == null) {
+                        Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+                    } else {
+                        addresses.add(result.getContents());
+                    }
+                } else {
+                    super.onActivityResult(requestCode, resultCode, data);
+                }
+            }
         }
+
     }
 
-//    private void routeAll(){
-//        String formattedAddress = addressString.replace(' ','+');
-//        String q = "10 gulliver st miramichi|9 dineen drive";
-//        String url = "";
-//        try{
-//            url = "&waypoints=" + URLEncoder.encode(q, "UTF-8");
-//        } catch(Exception e){
-//            System.out.print(e);
-//        }
-//        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-//                Uri.parse("https://www.google.com/maps/dir/?api=1&destination=725+george"+url));
-//        startActivity(intent);
-//    }
 }
