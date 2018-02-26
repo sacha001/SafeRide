@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -122,6 +124,21 @@ public class DriverMainActivity extends AppCompatActivity {
                         Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
                     } else {
                         //addresses.add(result.getContents());
+                        JSONObject json;
+                        String nameString = "";
+                        String addressString = "";
+                        try{
+                            json = new JSONObject(result.getContents());
+                            nameString = json.get("name").toString();
+                            addressString = json.get("address").toString();
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                        Map m = new HashMap();
+                        m.put("name",nameString);
+                        m.put("address",addressString);
+                        riderData.add(m);
                     }
                 } else {
                     super.onActivityResult(requestCode, resultCode, data);

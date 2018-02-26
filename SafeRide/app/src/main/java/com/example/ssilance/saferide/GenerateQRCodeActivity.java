@@ -12,6 +12,8 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import org.json.JSONObject;
+
 /**
  * Created by Sacha on 2018-01-28.
  */
@@ -32,15 +34,22 @@ public class GenerateQRCodeActivity extends Activity {
 
         getWindow().setLayout((int) (width * 0.8), (int) (height * 0.5));
         imageView = (ImageView)findViewById(R.id.imageView);
+        String nameString = PreferenceManager.
+                getDefaultSharedPreferences(getApplicationContext()).getString("NAME","");
         String addressString = PreferenceManager.
                 getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS","");
 
         try {
-            Bitmap bitmap = TextToImageEncode(addressString);
+            JSONObject json = new JSONObject();
+            json.put("name", nameString);
+            json.put("address", addressString);
+
+
+            Bitmap bitmap = TextToImageEncode(json.toString());
 
             imageView.setImageBitmap(bitmap);
 
-        } catch (WriterException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
