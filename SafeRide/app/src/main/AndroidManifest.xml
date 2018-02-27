@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,23 +18,28 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DriverMainActivity"></activity>
+        <activity android:name=".DriverMainActivity"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".RiderMainActivity"></activity>
+        <activity android:name=".RiderMainActivity"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".AddRiderActivity"
-            android:theme="@style/AppTheme.PopupTheme">
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".ProfileSettingsActivity"
-            android:theme="@style/AppTheme.PopupTheme">
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name=".GenerateQRCodeActivity"
-            android:theme="@style/AppTheme.PopupTheme">
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
