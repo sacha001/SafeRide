@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "940090371458",
+    "firebase_url": "https://saferide-44f31.firebaseio.com",
+    "project_id": "saferide-44f31",
+    "storage_bucket": "saferide-44f31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940090371458:android:522ebe36dbc90832",
+        "android_client_info": {
+          "package_name": "com.example.ssilance.saferide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940090371458-fvg1brau96if36sg5ed181vuejdbe0oh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ssilance.saferide",
+            "certificate_hash": "cfbd7af53eed486598f34c427216133a78ff06d2"
+          }
+        },
+        {
+          "client_id": "940090371458-b0sb7rfqeis30vb9g6lhotp0rekh0g8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf5bDI85__rXKZgYzKhqS0z3l5ALeNg5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940090371458-b0sb7rfqeis30vb9g6lhotp0rekh0g8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

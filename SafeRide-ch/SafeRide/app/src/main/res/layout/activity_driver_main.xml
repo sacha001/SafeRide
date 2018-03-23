@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.example.ssilance.saferide.DriverMainActivity">
+
+    <LinearLayout
+        android:id="@+id/driverLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ListView
+            android:id="@+id/mobile_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"></ListView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addAddressBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/addQRBtn"
+            android:layout_alignStart="@+id/addQRBtn"
+            android:layout_alignTop="@+id/addQRBtn"
+            android:clickable="true"
+            android:tint="@color/common_google_signin_btn_text_dark_default"
+            android:tooltipText="Add by Address"
+            app:srcCompat="@drawable/ic_person_add_black_24px"
+            tools:layout_editor_absoluteX="328dp"
+            tools:layout_editor_absoluteY="353dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/notify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/floatingActionButton"
+            android:layout_marginTop="72dp"
+            android:layout_toEndOf="@+id/customMessage"
+            android:layout_toRightOf="@+id/customMessage"
+            android:clickable="true"
+            android:tint="@color/common_google_signin_btn_text_dark_default"
+            android:tooltipText="5 minutes"
+            app:srcCompat="@mipmap/ic_fivo"
+            tools:layout_editor_absoluteX="328dp"
+            tools:layout_editor_absoluteY="124dp" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addQRBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/deleteAll"
+            android:layout_alignLeft="@+id/deleteAll"
+            android:layout_alignStart="@+id/deleteAll"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:tint="@color/common_google_signin_btn_text_dark_default"
+            android:tooltipText="Add by QRcode"
+            app:srcCompat="@drawable/ic_blackberry_qr_code_variant"
+            tools:layout_editor_absoluteX="328dp"
+            tools:layout_editor_absoluteY="293dp" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/customMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notify"
+            android:layout_marginTop="85dp"
+            android:layout_toLeftOf="@+id/deleteAll"
+            android:layout_toStartOf="@+id/deleteAll"
+            android:clickable="true"
+            android:tooltipText="Send Custom Message"
+            app:rippleColor="@color/black"
+            app:srcCompat="@android:drawable/ic_dialog_email"
+            tools:layout_editor_absoluteX="328dp"
+            tools:layout_editor_absoluteY="178dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:clickable="true"
+            android:tint="@color/common_google_signin_btn_text_dark_default"
+            app:srcCompat="@mipmap/ic_teno"
+            tools:layout_editor_absoluteX="328dp"
+            tools:layout_editor_absoluteY="235dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/deleteAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="33dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:clickable="true"
+            android:tint="@color/common_google_signin_btn_text_dark_default"
+            app:srcCompat="@android:drawable/ic_menu_delete"
+            tools:layout_editor_absoluteX="328dp"
+            tools:layout_editor_absoluteY="64dp" />
+
+    </RelativeLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>
