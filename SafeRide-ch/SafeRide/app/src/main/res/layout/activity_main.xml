@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.example.ssilance.saferide.MainActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="35dp">
+
+        <Button
+            android:id="@+id/driverLoginBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="211dp"
+            android:text="DRIVER" />
+
+        <Button
+            android:id="@+id/riderLoginBtn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/driverLoginBtn"
+            android:layout_below="@+id/driverLoginBtn"
+            android:layout_marginTop="12dp"
+            android:text="RIDER" />
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/riderLoginBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="76dp"
+            android:text="Safe Ride"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_above="@+id/welcome"
+        android:layout_toEndOf="@+id/driverLoginBtn"
+        app:srcCompat="@drawable/car"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="113dp" />
+
+
+</android.support.constraint.ConstraintLayout>
