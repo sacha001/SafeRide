@@ -6,6 +6,7 @@
 
 
 
+
     <application
 
         android:allowBackup="true"
@@ -45,6 +46,18 @@
 
         <activity
             android:name=".ProfileSettingsActivity"
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".ETAActivity"
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".EditNameActivity"
             android:theme="@style/AppTheme.PopupTheme"
             android:screenOrientation="portrait">
         </activity>

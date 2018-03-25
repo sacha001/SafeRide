@@ -41,11 +41,35 @@
             android:layout_above="@+id/riderLoginBtn"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="76dp"
-            android:text="Safe Ride"
+            android:text="Safe Rider"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
 
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="fill_parent"
+
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="5dp"
+
+
+
+            android:adjustViewBounds="true"
+            android:baselineAlignBottom="true"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_rc6" />
+    </LinearLayout>
     </RelativeLayout>
 
 

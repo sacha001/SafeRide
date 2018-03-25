@@ -38,10 +38,10 @@
             android:layout_gravity="center"
             android:layout_marginVertical="10dp"
             android:ems="10"
-            android:hint="Address"
+            android:hint="Street Address"
+            android:inputType="textPersonName"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:inputType="textPersonName" />
+            android:textColorHint="@color/white" />
 
         <Button
             android:id="@+id/doneBtn"

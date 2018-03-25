@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#353434">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/enterMessageETA"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Enter Estimated Time"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/writeMessageETA"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="10dp"
+            android:ems="10"
+            android:hint=" # Minutes"
+            android:inputType="number"
+            android:minLines="2"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+
+
+        <Button
+            android:id="@+id/doneBtnETA"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"
+            android:text="Send" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

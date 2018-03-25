@@ -12,62 +12,184 @@
         android:layout_height="fill_parent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="16dp">
-
-        <Button
-            android:id="@+id/createProfileBtn"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/viewProfileBtn"
-            android:layout_alignLeft="@+id/viewProfileBtn"
-            android:layout_alignStart="@+id/viewProfileBtn"
-            android:layout_marginBottom="14dp"
-            android:text="Create Profile"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <Button
-            android:id="@+id/viewProfileBtn"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/qrBtn"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="22dp"
-            android:text="View Profile"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="16dp" />
-
         <Button
             android:id="@+id/qrBtn"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/viewProfileBtn"
-            android:layout_alignStart="@+id/viewProfileBtn"
+
             android:layout_centerVertical="true"
             android:text="QR Code"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="16dp" />
-
-        <TextView
-            android:id="@+id/receive"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="51dp"
-            android:text="Waiting for news"
-            android:textColor="@color/white" />
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.9">
 
-        <TextView
-            android:id="@+id/header2"
-            android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            card_view:cardElevation="10dp"
+            android:layout_height="70dp"
+            card_view:cardCornerRadius="9dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            card_view:cardBackgroundColor="@color/colorPrimary">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0.9">
+
+                <TextView
+                    android:id="@+id/header2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="7dp"
+                    android:text="Latest News"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/receive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_below="@+id/header2"
+                    android:layout_marginTop="8dp"
+                    android:textSize="15dp"
+                    android:text="Waiting for news"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/receive"
-            android:layout_centerHorizontal="true"
-            android:text="Latest News:"
-            android:textColor="@color/white" />
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:weightSum="2" >
+
+            <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view3"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            card_view:cardElevation="15dp"
+            android:layout_height="80dp"
+            card_view:cardCornerRadius="9dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                card_view:cardBackgroundColor="@color/colorPrimary"
+            tools:ignore="NotSibling">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0.9">
+
+                <TextView
+                    android:id="@+id/header3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="7dp"
+                    android:text="Available Seats"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/receive2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_below="@+id/header2"
+                    android:layout_marginTop="12dp"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                card_view:cardElevation="15dp"
+                android:layout_height="80dp"
+                card_view:cardCornerRadius="9dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                card_view:cardBackgroundColor="@color/colorPrimary"
+                tools:ignore="NotSibling">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.9">
+
+                    <TextView
+                        android:id="@+id/ETAheader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="7dp"
+                        android:text="Time of Arrival"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/ETA2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="7dp"
+                        android:text="Waiting for data."
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="italic" />
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
