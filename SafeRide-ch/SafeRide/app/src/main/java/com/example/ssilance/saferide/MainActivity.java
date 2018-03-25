@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        obj = (ImageView)findViewById(R.id.imageView2);
-        ObjectAnimator animation = ObjectAnimator.ofFloat(obj, "translationX", 1400f);
-        animation.setRepeatCount(ObjectAnimator.INFINITE);
-        animation.setRepeatMode(ObjectAnimator.RESTART);
-        animation.setInterpolator(new AccelerateInterpolator());
-        animation.setDuration(1100);
-        animation.start();
+//        obj = (ImageView)findViewById(R.id.imageView2);
+//        ObjectAnimator animation = ObjectAnimator.ofFloat(obj, "translationX", 1400f);
+//        animation.setRepeatCount(ObjectAnimator.INFINITE);
+//        animation.setRepeatMode(ObjectAnimator.RESTART);
+//        animation.setInterpolator(new AccelerateInterpolator());
+//        animation.setDuration(1100);
+//        animation.start();
 
         configureDriverLoginBtn();
         configureRiderLoginBtn();

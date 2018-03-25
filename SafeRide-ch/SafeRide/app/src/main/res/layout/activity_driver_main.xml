@@ -21,108 +21,48 @@
             android:textColor="@color/white"></ListView>
 
     </LinearLayout>
-
-    <RelativeLayout
-
+    
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="0dp">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/addAddressBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/addQRBtn"
-            android:layout_alignStart="@+id/addQRBtn"
-            android:layout_alignTop="@+id/addQRBtn"
-            android:clickable="true"
-            android:tint="@color/common_google_signin_btn_text_dark_default"
-            android:tooltipText="Add by Address"
-            app:srcCompat="@drawable/ic_person_add_black_24px"
-            tools:layout_editor_absoluteX="328dp"
-            tools:layout_editor_absoluteY="353dp" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/notify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@+id/floatingActionButton"
-            android:layout_marginTop="72dp"
-            android:layout_toEndOf="@+id/customMessage"
-            android:layout_toRightOf="@+id/customMessage"
-            android:clickable="true"
-            android:tint="@color/common_google_signin_btn_text_dark_default"
-            android:tooltipText="5 minutes"
-            app:srcCompat="@mipmap/ic_fivo"
-            tools:layout_editor_absoluteX="328dp"
-            tools:layout_editor_absoluteY="124dp" />
+        android:layout_height="match_parent">
 
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/addQRBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/deleteAll"
-            android:layout_alignLeft="@+id/deleteAll"
-            android:layout_alignStart="@+id/deleteAll"
-            android:layout_marginBottom="24dp"
-            android:clickable="true"
-            android:tint="@color/common_google_signin_btn_text_dark_default"
-            android:tooltipText="Add by QRcode"
-            app:srcCompat="@drawable/ic_blackberry_qr_code_variant"
-            tools:layout_editor_absoluteX="328dp"
-            tools:layout_editor_absoluteY="293dp" />
 
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/customMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/notify"
-            android:layout_marginTop="85dp"
-            android:layout_toLeftOf="@+id/deleteAll"
-            android:layout_toStartOf="@+id/deleteAll"
-            android:clickable="true"
-            android:tooltipText="Send Custom Message"
-            app:rippleColor="@color/black"
-            app:srcCompat="@android:drawable/ic_dialog_email"
-            tools:layout_editor_absoluteX="328dp"
-            tools:layout_editor_absoluteY="178dp" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:clickable="true"
-            android:tint="@color/common_google_signin_btn_text_dark_default"
-            app:srcCompat="@mipmap/ic_teno"
-            tools:layout_editor_absoluteX="328dp"
-            tools:layout_editor_absoluteY="235dp" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/deleteAll"
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/multiple_actions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="33dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:clickable="true"
-            android:tint="@color/common_google_signin_btn_text_dark_default"
-            app:srcCompat="@android:drawable/ic_menu_delete"
-            tools:layout_editor_absoluteX="328dp"
-            tools:layout_editor_absoluteY="64dp" />
+            android:layout_alignParentEnd="true"
+            fab:fab_addButtonColorNormal="@color/white"
+            fab:fab_addButtonColorPressed="@color/white_pressed"
+            fab:fab_addButtonPlusIconColor="@color/half_black"
+            fab:fab_labelStyle="@style/menu_labels_style"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_icon="@drawable/ic_pencil"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_icon="@mipmap/ic_fivo"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"/>
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
 
     </RelativeLayout>
-
-
 
 </android.support.constraint.ConstraintLayout>

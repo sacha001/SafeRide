@@ -48,15 +48,6 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_above="@+id/welcome"
-        android:layout_toEndOf="@+id/driverLoginBtn"
-        app:srcCompat="@drawable/car"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="113dp" />
 
 
 </android.support.constraint.ConstraintLayout>
