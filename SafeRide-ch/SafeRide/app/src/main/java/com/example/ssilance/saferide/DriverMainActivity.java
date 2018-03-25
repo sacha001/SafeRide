@@ -14,7 +14,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
+//import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +57,7 @@ public class DriverMainActivity extends AppCompatActivity {
     private IntentIntegrator qrScan;
     private ListView listView;
     private Firebase myFirebaseRef;
-    private FloatingActionButton sendNotification;
+    //private FloatingActionButton sendNotification;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -66,15 +66,14 @@ public class DriverMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver_main);
 
 
-
         // Setup Firebase
         Firebase.setAndroidContext(this);
         // Replace the string below with your Firebase URL
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
 
-        riderData = new ArrayList<Map<String,String>>();
-        String[] from = { "name", "address" };
-        int[] to = { R.id.nameText, R.id.addressText };
+        riderData = new ArrayList<Map<String, String>>();
+        String[] from = {"name", "address"};
+        int[] to = {R.id.nameText, R.id.addressText};
         final SimpleAdapter adapter = new SimpleAdapter(this, riderData, R.layout.activity_listview, from, to);
 
         listView = (ListView) findViewById(R.id.mobile_list);
@@ -112,6 +111,14 @@ public class DriverMainActivity extends AppCompatActivity {
 
 
         countListView();
+
+        android.support.design.widget.FloatingActionButton sendETA =  findViewById(R.id.setTime);
+                sendETA.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                                Intent intent = new Intent(DriverMainActivity.this, ETAActivity.class);
+                                startActivity(intent);
+                            }
+        });
 
 //       FloatingActionButton deleteAll = (FloatingActionButton) findViewById(R.id.deleteAll);
 //        deleteAll.setOnClickListener(new View.OnClickListener() {
@@ -163,10 +170,11 @@ public class DriverMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String currentTime = DateFormat.getTimeInstance().format(new Date());
-                String message = currentTime +  "  Safe Ride will be back in 5 minutes.";
+                String message = currentTime + "  Safe Ride will be back in 5 minutes.";
                 // Store the text in Firebase with the key "message"
                 myFirebaseRef.child("message").setValue(message);
             }
+        });
     }
 
 
