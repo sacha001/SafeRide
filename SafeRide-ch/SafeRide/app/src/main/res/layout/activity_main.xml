@@ -63,6 +63,7 @@
             android:layout_marginBottom="5dp"
 
 
+
             android:adjustViewBounds="true"
             android:baselineAlignBottom="true"
             android:cropToPadding="true"
@@ -70,6 +71,7 @@
             app:srcCompat="@mipmap/ic_rc6" />
     </LinearLayout>
     </RelativeLayout>
+
 
 
 </android.support.constraint.ConstraintLayout>

@@ -6,13 +6,17 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
+
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Transition;
@@ -21,6 +25,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.PointerIcon;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,6 +36,8 @@ import android.widget.Toast;
 
 
 import com.firebase.client.Firebase;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -76,6 +83,18 @@ public class DriverMainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener(addressClickedHandler);
 
+        Button addRiderBtn = new Button(this);
+        addRiderBtn.setText("+");
+        listView.addFooterView(addRiderBtn);
+
+        addRiderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qrScan = new IntentIntegrator(DriverMainActivity.this);
+                qrScan.initiateScan();
+            }
+        });
+
         /*
          *  Delete functionality
          *  single item
@@ -91,30 +110,48 @@ public class DriverMainActivity extends AppCompatActivity {
             }
         });
 
+
         countListView();
-       FloatingActionButton deleteAll = (FloatingActionButton) findViewById(R.id.deleteAll);
-        deleteAll.setOnClickListener(new View.OnClickListener() {
+
+//       FloatingActionButton deleteAll = (FloatingActionButton) findViewById(R.id.deleteAll);
+//        deleteAll.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                riderData.clear();
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//
+//
+//
+
+//
+//        FloatingActionButton addAddress = (FloatingActionButton) findViewById(R.id.addAddressBtn);
+//        addAddress.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
+//                startActivityForResult(intent, ADD_BY_ADDRESS);
+//            }
+//        });
+//
+//        FloatingActionButton qrAdd = (FloatingActionButton) findViewById(R.id.addQRBtn);
+//        qrAdd.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                qrScan = new IntentIntegrator(DriverMainActivity.this);
+//                qrScan.initiateScan();
+////                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
+////                startActivityForResult(intent, REQUEST_CODE);
+//            }
+//        });
+
+        final View actionA = findViewById(R.id.action_a);
+        final View actionB = findViewById(R.id.action_b);
+
+        final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
+
+        actionA.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                riderData.clear();
-                adapter.notifyDataSetChanged();
-                myFirebaseRef.child("message").setValue("Loading");
-                myFirebaseRef.child("capacity").setValue("5");
-                myFirebaseRef.child("eta").setValue("TBD");
-                countListView();
-            }
-        });
-
-       FloatingActionButton sendETA = (FloatingActionButton) findViewById(R.id.setTime);
-        sendETA.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(DriverMainActivity.this, ETAActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        FloatingActionButton sendMessage = (FloatingActionButton) findViewById(R.id.customMessage);
-        sendMessage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(DriverMainActivity.this, SendMessageActivity.class);
                 startActivity(intent);
@@ -122,37 +159,14 @@ public class DriverMainActivity extends AppCompatActivity {
         });
 
 
-        sendNotification = (FloatingActionButton) findViewById(R.id.notify);
-       /* sendNotification.setOnClickListener(new View.OnClickListener() {
+        actionB.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 String currentTime = DateFormat.getTimeInstance().format(new Date());
                 String message = currentTime +  "  Safe Ride will be back in 5 minutes.";
                 // Store the text in Firebase with the key "message"
                 myFirebaseRef.child("message").setValue(message);
             }
-        });*/
-
-        FloatingActionButton addAddress = (FloatingActionButton) findViewById(R.id.addAddressBtn);
-        addAddress.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
-                startActivityForResult(intent, ADD_BY_ADDRESS);
-            }
-        });
-
-        FloatingActionButton qrAdd = (FloatingActionButton) findViewById(R.id.addQRBtn);
-        qrAdd.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                qrScan = new IntentIntegrator(DriverMainActivity.this);
-                qrScan.initiateScan();
-//                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
-//                startActivityForResult(intent, REQUEST_CODE);
-            }
-        });
-
-
-
-
     }
 
 

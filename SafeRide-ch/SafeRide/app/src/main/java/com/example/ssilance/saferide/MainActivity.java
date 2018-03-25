@@ -69,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
         myFirebaseRef.child("capacity").setValue("5");
 
+
        // animateButton();
+
 
         configureDriverLoginBtn();
         configureRiderLoginBtn();
