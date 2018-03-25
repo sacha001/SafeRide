@@ -12,7 +12,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -45,9 +47,12 @@ public class RiderMainActivity extends AppCompatActivity {
 
     private TextView header;
     private TextView receive;
+    private TextView etatext;
+    private TextView capacity;
     private Firebase myFirebaseRef;
     public static final String MESSAGE = "Message";
     private SharedPreferences.Editor editor;
+    private final int REQUEST_CODE = 1;
 
 
     @Override
@@ -55,8 +60,21 @@ public class RiderMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_main);
 
+        CardView card = (CardView) findViewById(R.id.card_view);
+
+        String addressString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS", "");
+        String nameString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("NAME", "");
+
+
+        ActionBar mActionBar = getSupportActionBar();
+        mActionBar.setTitle("Welcome " + nameString);
+
+
         header = (TextView) findViewById(R.id.header2);
         receive = (TextView) findViewById(R.id.receive);
+        etatext = (TextView) findViewById(R.id.ETA2);
+        capacity = (TextView) findViewById(R.id.receive2);
+        capacity.setText("5");
 
         // Setup Firebase
         Firebase.setAndroidContext(this);
@@ -67,17 +85,55 @@ public class RiderMainActivity extends AppCompatActivity {
         //SharedPreferences to save the Firebase message
         SharedPreferences prefs = getSharedPreferences(MESSAGE, MODE_PRIVATE);
         String restoredText = prefs.getString("message", null);
-        if(restoredText != null)
+        String restoredText2 = prefs.getString("eta", null);
+        String restoredText3 = prefs.getString("capacity", null);
+        if(restoredText2 != null)
         {
+            String message = prefs.getString("eta", null);
+            etatext.setText(message);
+        }
+        if (restoredText != null) {
             String message = prefs.getString("message", null);
             receive.setText(message);
         }
+        if (restoredText3 != null) {
+            String message = prefs.getString("capacity", null);
+            capacity.setText(message);
+        }
+
+
+        listen();
 
 
 
 
 
 
+
+
+
+
+
+       /* Button createProfile = (Button) findViewById(R.id.createProfileBtn);
+        createProfile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(RiderMainActivity.this, ProfileSettingsActivity.class);
+                startActivity(intent);
+            }
+        });*/
+
+
+        Button qrCode = (Button) findViewById(R.id.qrBtn);
+        qrCode.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent2 = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
+                startActivity(intent2);
+            }
+        });
+    }
+
+    public void listen()
+    {
         myFirebaseRef.child("message").addValueEventListener(new ValueEventListener() {
             // An event listener that listens for changes in the value of the key "message"
             // in Firebase
@@ -90,89 +146,129 @@ public class RiderMainActivity extends AppCompatActivity {
                 // The data can be null, so check for that...
                 if (v == null) {
                     text = "";
-                }
-                else {
+                } else {
                     text = v.toString();
                 }
                 // Update the TextView that displays the current message
                 receive.setText(text);
                 NotificationCompat.Builder mBuilder = mBuilder = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.mipmap.ic_launcher)
-                       .setContentTitle(text);
-               //         .setContentText("Click here");
+                        .setContentTitle(text);
+                //         .setContentText("Click here");
                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                 //notificationID allows you to update the notification later on.
+                //notificationID allows you to update the notification later on.
                 mNotificationManager.notify(1, mBuilder.build());
 
-                 editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
-                 editor.putString("message", text);
-                 editor.apply();
+                editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
+                editor.putString("message", text);
+                editor.apply();
 
 
             }
-            @Override public void onCancelled(FirebaseError error) {
+
+            @Override
+            public void onCancelled(FirebaseError error) {
                 Log.i("hello", "onCancelled");
             }
         });
 
 
 
-        Button createProfile = (Button) findViewById(R.id.createProfileBtn);
-        createProfile.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(RiderMainActivity.this, ProfileSettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button viewProfile = (Button) findViewById(R.id.viewProfileBtn);
-        viewProfile.setOnClickListener(new View.OnClickListener() {
+        myFirebaseRef.child("eta").addValueEventListener(new ValueEventListener() {
+            // An event listener that listens for changes in the value of the key "message"
+            // in Firebase
             @Override
-            public void onClick(View view) {
+            public void onDataChange(DataSnapshot snapshot) {
 
-               // String addressString;
-               // String nameString;
-                String addressString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS","");
-                String nameString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("NAME","");
+                Object v = snapshot.getValue();
+                String text;
+                // The data can be null, so check for that...
+                if (v == null) {
+                    text = "";
+                } else {
+                    text = v.toString();
+                }
+                // Update the TextView that displays the current message
+                etatext.setText(text);
+                NotificationCompat.Builder mBuilder = mBuilder = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.mipmap.ic_launcher).setContentTitle(text);
+                //         .setContentText("Click here");
+                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-                //SharedPreferences prefs = getSharedPreferences(MY_PROFILE, MODE_PRIVATE);
+                //notificationID allows you to update the notification later on.
+                mNotificationManager.notify(1, mBuilder.build());
 
-                //     String nameString = prefs.getString("name", null);//"No name defined" is the default value.
-                //    String addressString = prefs.getString("address", null); //0 is the default value.
+                editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
+                editor.putString("eta", text);
+                editor.apply();
 
 
-                String data = nameString + "\n" + addressString;
+            }
 
-
-                Toast.makeText(getApplicationContext(), data,
-                        Toast.LENGTH_LONG).show();
-
+            @Override
+            public void onCancelled(FirebaseError error) {
+                Log.i("hello", "onCancelled");
             }
         });
 
-        Button qrCode = (Button) findViewById(R.id.qrBtn);
-        qrCode.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent2 = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
-                startActivity(intent2);
+
+        myFirebaseRef.child("capacity").addValueEventListener(new ValueEventListener() {
+            // An event listener that listens for changes in the value of the key "message"
+            // in Firebase
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String currentTime = DateFormat.getTimeInstance().format(new Date());
+                // When the data has changed, get the new value
+                Object v = snapshot.getValue();
+                String text;
+                // The data can be null, so check for that...
+                if (v == null) {
+                    text = "";
+                } else {
+                    text = v.toString();
+                }
+                // Update the TextView that displays the current message
+                capacity.setText(text);
+
+
+                editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
+                editor.putString("capacity", text);
+                editor.apply();
+
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError error) {
+                Log.i("hello", "onCancelled");
             }
         });
+
     }
 
 
-    /** @Override
+    @Override
+    public void onResume(){
+        super.onResume();
+        ActionBar mActionBar = getSupportActionBar();
+        String nameString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("NAME", "");
+        mActionBar.setTitle("Welcome " + nameString);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_rider, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    if(item.getItemId() == R.id.createProfileBtn){
-    Intent intent = new Intent(RiderMainActivity.this, ProfileSettingsActivity.class);
-    startActivity(intent);
-    return true;
-    } else if(item.getItemId() == R.id.qrBtn){
-    Intent intent = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
-    startActivity(intent);
-    return true;
-    } else {
-    return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.editNameItem) {
+            startActivityForResult(new Intent(RiderMainActivity.this, EditNameActivity.class), REQUEST_CODE);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+
     }
-    }
-     */
 }

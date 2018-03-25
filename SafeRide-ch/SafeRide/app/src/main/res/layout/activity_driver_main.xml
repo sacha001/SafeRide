@@ -31,12 +31,22 @@
         tools:layout_editor_absoluteY="0dp">
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/setTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@mipmap/ic_clock1" />
+
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/addAddressBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/addQRBtn"
-            android:layout_alignStart="@+id/addQRBtn"
-            android:layout_alignTop="@+id/addQRBtn"
+            android:layout_below="@+id/customMessage"
+            android:layout_marginEnd="112dp"
+            android:layout_marginRight="112dp"
+            android:layout_marginTop="40dp"
+            android:layout_toLeftOf="@+id/customMessage"
+            android:layout_toStartOf="@+id/customMessage"
             android:clickable="true"
             android:tint="@color/common_google_signin_btn_text_dark_default"
             android:tooltipText="Add by Address"
