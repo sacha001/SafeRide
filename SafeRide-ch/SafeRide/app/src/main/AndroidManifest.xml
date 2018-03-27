@@ -51,6 +51,11 @@
         </activity>
 
         <activity
+            android:name=".DriverHelp"
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ETAActivity"
             android:theme="@style/AppTheme.PopupTheme"
             android:screenOrientation="portrait">

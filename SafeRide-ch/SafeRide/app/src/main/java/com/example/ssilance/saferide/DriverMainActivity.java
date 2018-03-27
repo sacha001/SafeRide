@@ -44,7 +44,9 @@ import com.google.zxing.integration.android.IntentResult;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -112,6 +114,17 @@ public class DriverMainActivity extends AppCompatActivity {
 
         countListView();
 
+
+        android.support.design.widget.FloatingActionButton help =  findViewById(R.id.help);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DriverMainActivity.this, DriverHelp.class);
+                startActivity(intent);
+            }
+        });
+
+
         android.support.design.widget.FloatingActionButton sendETA =  findViewById(R.id.setTime);
                 sendETA.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -169,9 +182,15 @@ public class DriverMainActivity extends AppCompatActivity {
         actionB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String currentTime = DateFormat.getTimeInstance().format(new Date());
-                String message = currentTime + "  Safe Ride will be back in 5 minutes.";
+
+
                 // Store the text in Firebase with the key "message"
+                Calendar now = Calendar.getInstance();
+                now.add(Calendar.MINUTE, 5);
+                SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                String time = df.format(now.getTime());
+                String message = time + "  Safe Ride will be back in 5 minutes.";
+                myFirebaseRef.child("eta").setValue(time);
                 myFirebaseRef.child("message").setValue(message);
             }
         });

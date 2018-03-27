@@ -71,11 +71,26 @@
                 android:id="@+id/action_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                fab:fab_icon="@mipmap/ic_fivo"
+                android:tint="@color/cardview_light_background"
                 fab:fab_colorNormal="@color/colorAccent"
-                fab:fab_colorPressed="@color/white_pressed"/>
+                fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_icon="@mipmap/ic_fivo" />
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/multiple_actions"
+            android:layout_marginBottom="36dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_toEndOf="@+id/setTime"
+            android:layout_toRightOf="@+id/setTime"
+            android:clickable="true"
+            android:elevation="8dp"
+            app:srcCompat="@android:drawable/ic_menu_help" />
 
 
     </RelativeLayout>

@@ -11,6 +11,8 @@ import android.widget.EditText;
 import com.firebase.client.Firebase;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -44,38 +46,15 @@ public class ETAActivity extends Activity {
         driverLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String currentTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(new Date());
+
                 EditText mess = (EditText) findViewById(R.id.writeMessageETA);
                 String getTheMess = mess.getText().toString();
-                int add = Integer.parseInt(getTheMess);
+                int add1 = Integer.parseInt(getTheMess);
+                Calendar now = Calendar.getInstance();
+                now.add(Calendar.MINUTE, add1);
+                SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                String stringToPass = df.format(now.getTime());
 
-                Scanner scan = new Scanner(currentTime);
-                scan.useDelimiter(":");
-                String hour = scan.next();
-                String mins = scan.next();
-                String m = mins.substring(0,2);
-                String amOrpm = mins.substring(2,mins.length());
-                int HR = Integer.parseInt(hour);
-                int M = Integer.parseInt(m);
-
-                int total = M + add;
-                String stringToPass = "";
-                if(total >= 60) {
-                    M = total - 60;
-                    if(HR != 12) {HR += 1;}
-                    else{
-                        if(amOrpm.equalsIgnoreCase("pm") && HR == 12) {
-                            HR = 1;
-                            amOrpm = "am";
-                        }
-                        else{
-                            HR = 1;
-                            amOrpm = "pm";
-                        }
-                    }
-                }else{M = total;}
-                if(M == 0){stringToPass = HR + ":" + "00" +" " + amOrpm;}
-                else{stringToPass = HR + ":" + M +" " + amOrpm;}
 
                 myFirebaseRef.child("eta").setValue(stringToPass);
                 myFirebaseRef.child("message").setValue("SafeRide has departed.");
