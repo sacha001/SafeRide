@@ -69,6 +69,22 @@
             android:scaleType="centerCrop"
             app:srcCompat="@mipmap/ic_rc6" />
     </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:layout_marginTop="25dp"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
     </RelativeLayout>
 
 
