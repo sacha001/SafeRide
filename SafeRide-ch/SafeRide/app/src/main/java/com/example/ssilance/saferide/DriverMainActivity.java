@@ -54,6 +54,8 @@ import java.util.Map;
 public class DriverMainActivity extends AppCompatActivity {
     private static final int ADD_BY_ADDRESS = 1;
     private static final int ADD_BY_QR = 49374;
+    private static final int ADDRESS_OR_QR = 2;
+
     private final int CAPACITY = 5;
     private ArrayList<Map<String,String>> riderData;
     private IntentIntegrator qrScan;
@@ -91,8 +93,9 @@ public class DriverMainActivity extends AppCompatActivity {
         addRiderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                qrScan = new IntentIntegrator(DriverMainActivity.this);
-                qrScan.initiateScan();
+                Intent intent = new Intent(DriverMainActivity.this, AddByAddressOrQRActivity.class);
+                startActivityForResult(intent,ADDRESS_OR_QR);
+
             }
         });
 
@@ -124,14 +127,6 @@ public class DriverMainActivity extends AppCompatActivity {
             }
         });
 
-
-        android.support.design.widget.FloatingActionButton sendETA =  findViewById(R.id.setTime);
-                sendETA.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                                Intent intent = new Intent(DriverMainActivity.this, ETAActivity.class);
-                                startActivity(intent);
-                            }
-        });
 
 //       FloatingActionButton deleteAll = (FloatingActionButton) findViewById(R.id.deleteAll);
 //        deleteAll.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +162,7 @@ public class DriverMainActivity extends AppCompatActivity {
 
         final View actionA = findViewById(R.id.action_a);
         final View actionB = findViewById(R.id.action_b);
+        final View sendETA = findViewById(R.id.setTime);
 
         final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
@@ -194,6 +190,14 @@ public class DriverMainActivity extends AppCompatActivity {
                 myFirebaseRef.child("message").setValue(message);
             }
         });
+
+
+        sendETA.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(DriverMainActivity.this, ETAActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -213,6 +217,14 @@ public class DriverMainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == ADDRESS_OR_QR){
+            if (resultCode == 1) {
+                        qrScan = new IntentIntegrator(DriverMainActivity.this);
+                        qrScan.initiateScan();
+                } else if (resultCode == 2){
+                        startActivityForResult(new Intent(DriverMainActivity.this, AddRiderActivity.class), ADD_BY_ADDRESS);
+            }
+        }
         switch(requestCode) {
             case (ADD_BY_ADDRESS) : {
                 if (resultCode == Activity.RESULT_OK) {

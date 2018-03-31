@@ -41,8 +41,7 @@ public class DriverHelp extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DriverHelp.this, DriverMainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

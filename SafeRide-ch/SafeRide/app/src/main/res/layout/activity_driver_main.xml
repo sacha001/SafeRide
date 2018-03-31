@@ -31,15 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="0dp">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/setTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@mipmap/ic_clock1" />
 
-        
-        android:layout_height="match_parent">
 
 
 
@@ -71,10 +63,17 @@
                 android:id="@+id/action_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="@color/cardview_light_background"
                 fab:fab_colorNormal="@color/colorAccent"
                 fab:fab_colorPressed="@color/white_pressed"
                 fab:fab_icon="@mipmap/ic_fivo" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/setTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_icon="@mipmap/ic_clock1" />
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
