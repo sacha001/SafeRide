@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.transition.Transition;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -70,9 +71,8 @@ public class DriverMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_driver_main);
 
 
-        // Setup Firebase
+
         Firebase.setAndroidContext(this);
-        // Replace the string below with your Firebase URL
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
 
         riderData = new ArrayList<Map<String, String>>();
@@ -88,6 +88,9 @@ public class DriverMainActivity extends AppCompatActivity {
 
         Button addRiderBtn = new Button(this);
         addRiderBtn.setText("+");
+        addRiderBtn.setBackgroundColor(getResources().getColor(R.color.grey));
+        addRiderBtn.setTextColor(getResources().getColor(R.color.colorAccent));
+        addRiderBtn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 35);
         listView.addFooterView(addRiderBtn);
 
         addRiderBtn.setOnClickListener(new View.OnClickListener() {
@@ -137,32 +140,13 @@ public class DriverMainActivity extends AppCompatActivity {
 //                adapter.notifyDataSetChanged();
 //            }
 //        });
-//
-//
-//
 
-//
-//        FloatingActionButton addAddress = (FloatingActionButton) findViewById(R.id.addAddressBtn);
-//        addAddress.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
-//                startActivityForResult(intent, ADD_BY_ADDRESS);
-//            }
-//        });
-//
-//        FloatingActionButton qrAdd = (FloatingActionButton) findViewById(R.id.addQRBtn);
-//        qrAdd.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                qrScan = new IntentIntegrator(DriverMainActivity.this);
-//                qrScan.initiateScan();
-////                Intent intent = new Intent(DriverMainActivity.this, AddRiderActivity.class);
-////                startActivityForResult(intent, REQUEST_CODE);
-//            }
-//        });
 
         final View actionA = findViewById(R.id.action_a);
         final View actionB = findViewById(R.id.action_b);
         final View sendETA = findViewById(R.id.setTime);
+
+     //   sendETA.setBackgroundTintMode(.getResources().getColor(R.color.colorAccent));
 
         final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
@@ -179,8 +163,6 @@ public class DriverMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                // Store the text in Firebase with the key "message"
                 Calendar now = Calendar.getInstance();
                 now.add(Calendar.MINUTE, 5);
                 SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
@@ -199,11 +181,6 @@ public class DriverMainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
 
 
     private AdapterView.OnItemClickListener addressClickedHandler = new AdapterView.OnItemClickListener() {

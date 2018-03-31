@@ -50,17 +50,13 @@ public class ProfileSettingsActivity extends Activity {
 
     private void configureDoneBtn(){
 
-
-
-
-
             Button driverLoginBtn = (Button) findViewById(R.id.doneBtn);
             driverLoginBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     EditText nameInput = (EditText) findViewById(R.id.nameInput);
                     EditText addressInput = (EditText) findViewById(R.id.addressInput);
-                     String nameString = nameInput.getText().toString();
+                    String nameString = nameInput.getText().toString();
                     String addressString = addressInput.getText().toString();
 
                     if(nameString.equals(""))

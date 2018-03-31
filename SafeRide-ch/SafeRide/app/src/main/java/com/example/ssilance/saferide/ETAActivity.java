@@ -1,6 +1,7 @@
 package com.example.ssilance.saferide;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -49,18 +50,27 @@ public class ETAActivity extends Activity {
 
                 EditText mess = (EditText) findViewById(R.id.writeMessageETA);
                 String getTheMess = mess.getText().toString();
-                int add1 = Integer.parseInt(getTheMess);
-                Calendar now = Calendar.getInstance();
-                now.add(Calendar.MINUTE, add1);
-                SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
-                String stringToPass = df.format(now.getTime());
+
+                if(getTheMess.equals("")) {
+                   mess.setHint("Don't forget to enter something!");
+                    mess.setHintTextColor(Color.RED);
+
+                }
+                else {
+
+                    int add1 = Integer.parseInt(getTheMess);
+                    Calendar now = Calendar.getInstance();
+                    now.add(Calendar.MINUTE, add1);
+                    SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                    String stringToPass = df.format(now.getTime());
 
 
-                myFirebaseRef.child("eta").setValue(stringToPass);
-                myFirebaseRef.child("message").setValue("SafeRide has departed.");
+                    myFirebaseRef.child("eta").setValue(stringToPass);
+                    myFirebaseRef.child("message").setValue("SafeRide has departed.");
+                    finish();
+                }
 
 
-                finish();
             }
         });
     }

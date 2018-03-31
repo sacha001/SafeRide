@@ -60,11 +60,8 @@ public class RiderMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_main);
 
-        CardView card = (CardView) findViewById(R.id.card_view);
-
         String addressString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS", "");
         String nameString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("NAME", "");
-
 
         ActionBar mActionBar = getSupportActionBar();
         mActionBar.setTitle("Welcome " + nameString);
@@ -101,28 +98,6 @@ public class RiderMainActivity extends AppCompatActivity {
             capacity.setText(message);
         }
 
-
-        listen();
-
-
-
-
-
-
-
-
-
-
-
-       /* Button createProfile = (Button) findViewById(R.id.createProfileBtn);
-        createProfile.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(RiderMainActivity.this, ProfileSettingsActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-
         Button qrCode = (Button) findViewById(R.id.qrBtn);
         qrCode.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -130,40 +105,29 @@ public class RiderMainActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
+        listen();
     }
 
     public void listen()
     {
         myFirebaseRef.child("message").addValueEventListener(new ValueEventListener() {
-            // An event listener that listens for changes in the value of the key "message"
-            // in Firebase
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 String currentTime = DateFormat.getTimeInstance().format(new Date());
-                // When the data has changed, get the new value
                 Object v = snapshot.getValue();
                 String text;
-                // The data can be null, so check for that...
-                if (v == null) {
-                    text = "";
-                } else {
-                    text = v.toString();
-                }
-                // Update the TextView that displays the current message
+                if (v == null) {text = "";}
+                else {text = v.toString();}
+
                 receive.setText(text);
                 NotificationCompat.Builder mBuilder = mBuilder = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(text);
-                //         .setContentText("Click here");
                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-                //notificationID allows you to update the notification later on.
                 mNotificationManager.notify(1, mBuilder.build());
-
                 editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
                 editor.putString("message", text);
                 editor.apply();
-
-
             }
 
             @Override
@@ -175,28 +139,17 @@ public class RiderMainActivity extends AppCompatActivity {
 
 
         myFirebaseRef.child("eta").addValueEventListener(new ValueEventListener() {
-            // An event listener that listens for changes in the value of the key "message"
-            // in Firebase
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
                 Object v = snapshot.getValue();
                 String text;
-                // The data can be null, so check for that...
-                if (v == null) {
-                    text = "";
-                } else {
-                    text = v.toString();
-                }
-                // Update the TextView that displays the current message
+                if (v == null) {text = "";}
+                else {text = v.toString();}
+
                 etatext.setText(text);
                 NotificationCompat.Builder mBuilder = mBuilder = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.mipmap.ic_launcher).setContentTitle(text);
-                //         .setContentText("Click here");
                 NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-                //notificationID allows you to update the notification later on.
                 mNotificationManager.notify(1, mBuilder.build());
-
                 editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
                 editor.putString("eta", text);
                 editor.apply();
@@ -212,29 +165,18 @@ public class RiderMainActivity extends AppCompatActivity {
 
 
         myFirebaseRef.child("capacity").addValueEventListener(new ValueEventListener() {
-            // An event listener that listens for changes in the value of the key "message"
-            // in Firebase
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 String currentTime = DateFormat.getTimeInstance().format(new Date());
-                // When the data has changed, get the new value
                 Object v = snapshot.getValue();
                 String text;
-                // The data can be null, so check for that...
-                if (v == null) {
-                    text = "";
-                } else {
-                    text = v.toString();
-                }
-                // Update the TextView that displays the current message
+
+                if (v == null) {text = "";}
+                else {text = v.toString();}
                 capacity.setText(text);
-
-
                 editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
                 editor.putString("capacity", text);
                 editor.apply();
-
-
             }
 
             @Override

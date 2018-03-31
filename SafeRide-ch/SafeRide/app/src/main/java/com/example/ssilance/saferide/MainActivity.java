@@ -44,68 +44,29 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout mLinearLayout;
     private static final String TAG = "MyActivity";
     private Firebase myFirebaseRef;
-    //private Object view;
 
-       /*  obj = (ImageView)findViewById(R.id.imageView2);
-                ObjectAnimator animation = ObjectAnimator.ofFloat(obj, "translationX", 1400f);
-               // animation.setRepeatCount(ObjectAnimator.INFINITE);
-               // animation.setRepeatMode(ObjectAnimator.RESTART);
-                animation.setInterpolator(new AccelerateInterpolator());
-                animation.setDuration(2000);
-                animation.start();*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Resources res = getResources();
-        Drawable myImage = res.getDrawable(R.drawable.ic_rc2);
-
         driverLoginBtn = (Button) findViewById(R.id.driverLoginBtn);
-        // Setup Firebase
         Firebase.setAndroidContext(this);
-        // Replace the string below with your Firebase URL
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
         myFirebaseRef.child("capacity").setValue("5");
-
-
-       // animateButton();
-
-
         configureDriverLoginBtn();
         configureRiderLoginBtn();
 
     }
 
-    public void animateButton() {
-        // Load the animation
-        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-       // double animationDuration = 4000;
-       // myAnim.setDuration((long)animationDuration);
 
-        // Use custom animation interpolator to achieve the bounce effect
-        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.5, 23);
-
-        myAnim.setInterpolator(interpolator);
-
-        // Animate the button
-
-        riderLoginBtn.startAnimation(myAnim);
-        driverLoginBtn.startAnimation(myAnim);
-
-
-
-    }
 
     private void configureDriverLoginBtn(){
-
         driverLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 startActivity(new Intent(MainActivity.this, DriverMainActivity.class));
-
             }
         });
     }

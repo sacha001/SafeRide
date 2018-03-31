@@ -19,57 +19,65 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_above="@+id/riderLoginBtn"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="211dp"
-            android:text="DRIVER" />
+            android:layout_marginBottom="16dp"
+            android:elevation="3dp"
+            android:text="DRIVER"
+            android:textSize="17dp" />
 
         <Button
             android:id="@+id/riderLoginBtn"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/driverLoginBtn"
-            android:layout_below="@+id/driverLoginBtn"
-            android:layout_marginTop="12dp"
-            android:text="RIDER" />
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignLeft="@+id/driverLoginBtn"
+            android:layout_alignStart="@+id/driverLoginBtn"
+            android:layout_marginBottom="13dp"
+            android:elevation="3dp"
+            android:text="RIDER"
+            android:textSize="17dp" />
 
         <TextView
             android:id="@+id/welcome"
-            android:layout_width="110dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/riderLoginBtn"
+            android:layout_above="@+id/driverLoginBtn"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="76dp"
-            android:text="Safe Rider"
+            android:layout_marginBottom="18dp"
+            android:text="Safe Ride"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:orientation="vertical"
-        android:layout_marginBottom="5dp"
-        android:layout_gravity="bottom"
-        android:layout_weight="1"
+            android:textSize="26dp"
+            android:textStyle="bold" />
 
-        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="0dp"
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="fill_parent"
+            android:layout_weight="0"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="5dp"
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="fill_parent"
+
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="0dp"
 
 
-
-            android:adjustViewBounds="true"
-            android:baselineAlignBottom="true"
-            android:cropToPadding="true"
-            android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/ic_rc6" />
-    </LinearLayout>
+                android:adjustViewBounds="true"
+                android:baselineAlignBottom="true"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                app:srcCompat="@mipmap/ic_launcher_foreground_c" />
+        </LinearLayout>
     </RelativeLayout>
 
 

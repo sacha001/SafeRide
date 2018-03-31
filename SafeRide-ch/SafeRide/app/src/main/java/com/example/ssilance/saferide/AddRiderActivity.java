@@ -2,6 +2,7 @@ package com.example.ssilance.saferide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -48,9 +49,21 @@ public class AddRiderActivity extends Activity {
                 EditText addressInput = (EditText) findViewById(R.id.addressInput);
                 nameString = nameInput.getText().toString();
                 addressString = addressInput.getText().toString();
+
+                if(addressString.equals("")) {
+                    addressInput.setHint("We need your address.");
+                    addressInput.setHintTextColor(Color.RED);
+                }
+
+
                 resultIntent = new Intent();
-                resultIntent.putExtra("NAME_STRING", nameString);
-                resultIntent.putExtra("ADDRESS_STRING", addressString);
+
+               // if(!nameString.equals("")){
+                    resultIntent.putExtra("NAME_STRING", nameString);
+               // }
+               // if(!addressString.equals("")){
+                    resultIntent.putExtra("ADDRESS_STRING", addressString);
+              //  }
                 setResult(Activity.RESULT_OK, resultIntent);
                 finish();
             }
