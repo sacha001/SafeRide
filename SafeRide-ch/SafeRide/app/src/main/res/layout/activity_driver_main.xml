@@ -74,8 +74,8 @@
                 android:tint="@color/cardview_light_background"
                 fab:fab_colorNormal="@color/colorAccent"
                 fab:fab_colorPressed="@color/white_pressed"
-                fab:fab_icon="@mipmap/ic_clock1"
-                fab:srcCompat="@drawable/ic_access_time_white_24dp" />
+                fab:fab_icon="@drawable/ic_access_time_white_24dp"
+                />
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

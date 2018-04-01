@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.net.Uri;
@@ -63,6 +64,7 @@ public class DriverMainActivity extends AppCompatActivity {
     private ListView listView;
     private Firebase myFirebaseRef;
     private final int REQUEST_CODE = 1;
+    private DatabaseHandler db;
     //private FloatingActionButton sendNotification;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -71,12 +73,12 @@ public class DriverMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
 
-
+        db = new DatabaseHandler(this);
 
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
         setSchedule();
-        riderData = new ArrayList<Map<String, String>>();
+        riderData = db.getList();
         String[] from = {"name", "address"};
         int[] to = {R.id.nameText, R.id.addressText};
         final SimpleAdapter adapter = new SimpleAdapter(this, riderData, R.layout.activity_listview, from, to);
@@ -110,6 +112,7 @@ public class DriverMainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                db.deleteItem(riderData.get(position));
                 riderData.remove(position);
                 adapter.notifyDataSetChanged();
                 Toast.makeText(DriverMainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
@@ -118,18 +121,16 @@ public class DriverMainActivity extends AppCompatActivity {
             }
         });
 
-
         countListView();
 
-
-        android.support.design.widget.FloatingActionButton help =  findViewById(R.id.help);
-        help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DriverMainActivity.this, DriverHelp.class);
-                startActivity(intent);
-            }
-        });
+//        android.support.design.widget.FloatingActionButton help =  findViewById(R.id.help);
+//        help.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(DriverMainActivity.this, DriverHelp.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
 //       FloatingActionButton deleteAll = (FloatingActionButton) findViewById(R.id.deleteAll);
@@ -223,6 +224,7 @@ public class DriverMainActivity extends AppCompatActivity {
                         m.put("name",nameString);
                         m.put("address",addressString);
                         riderData.add(m);
+                        db.addListItem(m);
                         countListView();
                     }
                 }
