@@ -3,6 +3,8 @@ package com.example.ssilance.saferide;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +37,6 @@ public class ETAActivity extends Activity {
         int height = dm.heightPixels;
         int width = dm.widthPixels;
         getWindow().setLayout((int) (width * 0.8), (int) (height * 0.3));
-
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
 
@@ -63,7 +64,6 @@ public class ETAActivity extends Activity {
                     now.add(Calendar.MINUTE, add1);
                     SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
                     String stringToPass = df.format(now.getTime());
-
 
                     myFirebaseRef.child("eta").setValue(stringToPass);
                     myFirebaseRef.child("message").setValue("SafeRide has departed.");

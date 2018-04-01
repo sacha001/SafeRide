@@ -74,7 +74,7 @@ public class DriverMainActivity extends AppCompatActivity {
 
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
-
+        setSchedule();
         riderData = new ArrayList<Map<String, String>>();
         String[] from = {"name", "address"};
         int[] to = {R.id.nameText, R.id.addressText};
@@ -181,6 +181,14 @@ public class DriverMainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void setSchedule() {
+        myFirebaseRef.child("Monday-Thursday").setValue("2:15PM-10:45PM");
+        myFirebaseRef.child("Friday").setValue("5:45 PM- 11:15 PM");
+        myFirebaseRef.child("Sunday").setValue("2:15PM-10:45PM");
+    };
+
 
 
     private AdapterView.OnItemClickListener addressClickedHandler = new AdapterView.OnItemClickListener() {

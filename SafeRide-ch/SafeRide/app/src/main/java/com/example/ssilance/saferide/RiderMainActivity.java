@@ -1,20 +1,15 @@
 package com.example.ssilance.saferide;
 
-import android.app.AlarmManager;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,18 +17,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.google.zxing.WriterException;
 
-import org.json.JSONObject;
-
-import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -53,7 +43,7 @@ public class RiderMainActivity extends AppCompatActivity {
     public static final String MESSAGE = "Message";
     private SharedPreferences.Editor editor;
     private final int REQUEST_CODE = 1;
-
+    private FloatingActionButton mInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +87,14 @@ public class RiderMainActivity extends AppCompatActivity {
             String message = prefs.getString("capacity", null);
             capacity.setText(message);
         }
-
+        mInfo = (FloatingActionButton) findViewById(R.id.info);
+        mInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(RiderMainActivity.this, InfoActivity.class);
+                startActivity(intent2);
+           }
+        });
         Button qrCode = (Button) findViewById(R.id.qrBtn);
         qrCode.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
