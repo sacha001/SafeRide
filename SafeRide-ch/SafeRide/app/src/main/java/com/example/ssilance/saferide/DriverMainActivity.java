@@ -62,6 +62,7 @@ public class DriverMainActivity extends AppCompatActivity {
     private IntentIntegrator qrScan;
     private ListView listView;
     private Firebase myFirebaseRef;
+    private final int REQUEST_CODE = 1;
     //private FloatingActionButton sendNotification;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -272,6 +273,24 @@ public class DriverMainActivity extends AppCompatActivity {
         }
 
         myFirebaseRef.child("capacity").setValue(message);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_driver, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.driverInfoItem) {
+            startActivityForResult(new Intent(DriverMainActivity.this, DriverHelp.class), REQUEST_CODE);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+
     }
 
 }
