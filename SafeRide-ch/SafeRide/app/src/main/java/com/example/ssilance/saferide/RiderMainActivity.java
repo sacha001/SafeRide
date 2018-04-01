@@ -205,7 +205,12 @@ public class RiderMainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.editNameItem) {
             startActivityForResult(new Intent(RiderMainActivity.this, EditNameActivity.class), REQUEST_CODE);
             return true;
-        } else {
+        }
+        else if (item.getItemId() == R.id.riderHelpItem) {
+            startActivityForResult(new Intent(RiderMainActivity.this, RiderHelpActivity.class), REQUEST_CODE);
+            return true;
+        }
+        else {
             return super.onOptionsItemSelected(item);
         }
 

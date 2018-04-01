@@ -58,7 +58,7 @@
 
         <activity
             android:name=".DriverHelp"
-            android:theme="@style/AppTheme.PopupTheme"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -81,6 +81,10 @@
         <activity
             android:name=".InfoActivity"
             android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".RiderHelpActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:screenOrientation="portrait">
         </activity>
     </application>

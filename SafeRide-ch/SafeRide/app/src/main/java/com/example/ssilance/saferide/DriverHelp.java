@@ -30,7 +30,7 @@ import java.util.Map;
 
 //import android.support.design.widget.FloatingActionButton;
 
-public class DriverHelp extends AppCompatActivity {
+public class DriverHelp extends Activity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

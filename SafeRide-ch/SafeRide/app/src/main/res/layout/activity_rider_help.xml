@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4D000000">
+
+    <LinearLayout
+        android:id="@+id/riderLinearLayout"
+        android:layout_width="419dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp">
+
+
+    </LinearLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="160dp"><![CDATA[android:layout_height="match_parent"> ]]>
+
+
+
+        <ImageView
+            android:id="@+id/Add_Image"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="add"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_launcher_add1" />
+
+        <Button
+            android:id="@+id/OK"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="8dp"
+
+            android:background="@color/colorAccent"
+            android:text="X" />
+
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/Add_Image"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginBottom="29dp"
+
+
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp"
+            android:text="HELP MENU"
+            android:textColor="@color/colorAccent"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_below="@+id/Add_Image"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp"
+            android:text="Add an address"
+            android:textColor="@color/colorAccent"
+            android:textSize="21dp"
+            android:textStyle="bold" />
+
+
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
