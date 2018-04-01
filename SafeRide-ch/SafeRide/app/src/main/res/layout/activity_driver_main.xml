@@ -21,6 +21,24 @@
             android:textColor="@color/white"></ListView>
 
     </LinearLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="15dp"
+        >
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/routeAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:fab_icon="@drawable/ic_directions_white_24px"
+        fab:fab_colorNormal="@color/colorAccent"
+        fab:fab_colorPressed="@color/white_pressed"/>
+        </RelativeLayout>
     
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:fab="http://schemas.android.com/apk/res-auto"

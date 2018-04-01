@@ -147,6 +147,7 @@ public class DriverMainActivity extends AppCompatActivity {
         final View actionA = findViewById(R.id.action_a);
         final View actionB = findViewById(R.id.action_b);
         final View sendETA = findViewById(R.id.setTime);
+        final View routeAll = findViewById(R.id.routeAll);
 
      //   sendETA.setBackgroundTintMode(.getResources().getColor(R.color.colorAccent));
 
@@ -180,6 +181,26 @@ public class DriverMainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DriverMainActivity.this, ETAActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        routeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(riderData.size() > 1) {
+                    String waypoints = riderData.get(0).get("address");
+                    int i;
+                    for(i = 1; i < riderData.size() - 1; i++){
+                        waypoints += "|" + riderData.get(i).get("address");
+                    }
+                    String destination = riderData.get(i).get("address");
+                    String url = "https://www.google.com/maps/dir/?api=1&destination=" + destination + "&waypoints=" + waypoints;
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                } else if(riderData.size() > 0){
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/dir/?api=1&destination=" + riderData.get(0).get("address")));
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -253,6 +274,7 @@ public class DriverMainActivity extends AppCompatActivity {
                         m.put("name",nameString);
                         m.put("address",addressString);
                         riderData.add(m);
+                        db.addListItem(m);
                     }
                 } else {
                     super.onActivityResult(requestCode, resultCode, data);
@@ -289,7 +311,11 @@ public class DriverMainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.driverInfoItem) {
             startActivityForResult(new Intent(DriverMainActivity.this, DriverHelp.class), REQUEST_CODE);
             return true;
-        } else {
+        }
+        if (item.getItemId() == R.id.resetItem) {
+            //TODO
+            return true;
+        }else {
             return super.onOptionsItemSelected(item);
         }
 

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <item
+        android:title="Reset"
+        android:id="@+id/resetItem"
+        android:icon="@drawable/ic_replay_white_24px"
+        app:showAsAction="ifRoom"
+        />
     <item
         android:title="Driver Info"
         android:id="@+id/driverInfoItem"
         android:icon="@android:drawable/ic_menu_help"
         app:showAsAction="ifRoom"
         />
+
 
 </menu>
