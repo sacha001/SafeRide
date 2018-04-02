@@ -77,23 +77,20 @@
                 android:id="@+id/action_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/colorAccent"
-                fab:tint="@android:color/white"
                 android:tint="@android:color/white"
+                fab:fab_colorNormal="@color/colorAccent"
                 fab:fab_colorPressed="@color/white_pressed"
-                fab:fab_icon="@mipmap/ic_fivo" />
+                fab:fab_icon="@mipmap/ic_launcher_five1"/>
 
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/setTime"
-                style="@style/AlertDialog.AppCompat.Light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="0dp"
-                android:tint="@color/cardview_light_background"
                 fab:fab_colorNormal="@color/colorAccent"
                 fab:fab_colorPressed="@color/white_pressed"
-                fab:fab_icon="@drawable/ic_access_time_white_24dp"
-                />
+                fab:fab_icon="@mipmap/ic_launcherclock1"
+                android:scaleType="centerCrop"/>
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

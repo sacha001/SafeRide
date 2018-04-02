@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -38,7 +39,8 @@ public class DriverHelp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_help);
        Button ok =  findViewById(R.id.OK);
-        ok.setOnClickListener(new View.OnClickListener() {
+
+       ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

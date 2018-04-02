@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private Button riderLoginBtn;
     LinearLayout mLinearLayout;
     private static final String TAG = "MyActivity";
-    private Firebase myFirebaseRef;
+
 
 
     @Override
@@ -52,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Resources res = getResources();
         driverLoginBtn = (Button) findViewById(R.id.driverLoginBtn);
-        Firebase.setAndroidContext(this);
-        myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
-        myFirebaseRef.child("capacity").setValue("5");
+
         configureDriverLoginBtn();
         configureRiderLoginBtn();
 

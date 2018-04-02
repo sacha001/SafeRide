@@ -57,7 +57,6 @@ public class DriverMainActivity extends AppCompatActivity {
     private static final int ADD_BY_ADDRESS = 1;
     private static final int ADD_BY_QR = 49374;
     private static final int ADDRESS_OR_QR = 2;
-
     private final int CAPACITY = 5;
     private ArrayList<Map<String,String>> riderData;
     private IntentIntegrator qrScan;
@@ -66,28 +65,31 @@ public class DriverMainActivity extends AppCompatActivity {
     private final int REQUEST_CODE = 1;
     private DatabaseHandler db;
     private SimpleAdapter adapter;
-    //private FloatingActionButton sendNotification;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_main);
+        final View actionA = findViewById(R.id.action_a);
+        final View actionB = findViewById(R.id.action_b);
+        final View sendETA = findViewById(R.id.setTime);
+        final View routeAll = findViewById(R.id.routeAll);
+        final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
         db = new DatabaseHandler(this);
 
         Firebase.setAndroidContext(this);
         myFirebaseRef = new Firebase("https://tryfire-71c5c.firebaseio.com/");
-        setSchedule();
+
         riderData = db.getList();
         String[] from = {"name", "address"};
         int[] to = {R.id.nameText, R.id.addressText};
         adapter  = new SimpleAdapter(this, riderData, R.layout.activity_listview, from, to);
 
         listView = (ListView) findViewById(R.id.mobile_list);
-
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener(addressClickedHandler);
 
         Button addRiderBtn = new Button(this);
@@ -102,14 +104,9 @@ public class DriverMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DriverMainActivity.this, AddByAddressOrQRActivity.class);
                 startActivityForResult(intent,ADDRESS_OR_QR);
-
             }
         });
 
-        /*
-         *  Delete functionality
-         *  single item
-         */
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -124,35 +121,6 @@ public class DriverMainActivity extends AppCompatActivity {
 
         countListView();
 
-//        android.support.design.widget.FloatingActionButton help =  findViewById(R.id.help);
-//        help.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(DriverMainActivity.this, DriverHelp.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-//       FloatingActionButton deleteAll = (FloatingActionButton) findViewById(R.id.deleteAll);
-//        deleteAll.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                riderData.clear();
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-
-
-        final View actionA = findViewById(R.id.action_a);
-        final View actionB = findViewById(R.id.action_b);
-        final View sendETA = findViewById(R.id.setTime);
-        final View routeAll = findViewById(R.id.routeAll);
-
-     //   sendETA.setBackgroundTintMode(.getResources().getColor(R.color.colorAccent));
-
-        final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 
         actionA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,14 +173,6 @@ public class DriverMainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-    private void setSchedule() {
-        myFirebaseRef.child("Monday-Thursday").setValue("2:15PM-10:45PM");
-        myFirebaseRef.child("Friday").setValue("5:45 PM- 11:15 PM");
-        myFirebaseRef.child("Sunday").setValue("2:15PM-10:45PM");
-    };
-
 
 
     private AdapterView.OnItemClickListener addressClickedHandler = new AdapterView.OnItemClickListener() {
@@ -288,20 +248,29 @@ public class DriverMainActivity extends AppCompatActivity {
     }
     private void countListView() {
         String message = "";
-        int count = listView.getAdapter().getCount();
-        if(count == CAPACITY)
-        {
+        int count = riderData.size();
+        Log.i("count", String.valueOf(count));
+        if(count == CAPACITY) {
             message = "Full";
         }
         else{
             int currentSpotsLeft = CAPACITY - count;
             message = String.valueOf(currentSpotsLeft);
-
         }
 
         myFirebaseRef.child("capacity").setValue(message);
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        countListView();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        countListView();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -315,8 +284,27 @@ public class DriverMainActivity extends AppCompatActivity {
             startActivityForResult(new Intent(DriverMainActivity.this, DriverHelp.class), REQUEST_CODE);
             return true;
         }
+
         if (item.getItemId() == R.id.resetItem) {
-            //TODO
+
+            if(riderData.size() == 0)
+            {
+                Toast.makeText(DriverMainActivity.this, "Nothing to delete", Toast.LENGTH_LONG).show();
+            }else{
+                for (int i=0;i<riderData.size();i++){
+                    db.deleteItem(riderData.get(i));
+                }
+
+                riderData.clear();
+                adapter.notifyDataSetChanged();
+                Calendar now = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                String actualtime = df.format(now.getTime());
+                myFirebaseRef.child("eta").setValue("TBD");
+                myFirebaseRef.child("message").setValue(actualtime + " Safe Ride is loading!");
+                countListView();
+                Toast.makeText(DriverMainActivity.this, "Reset & Loading message sent", Toast.LENGTH_LONG).show();
+            }
             return true;
         }else {
             return super.onOptionsItemSelected(item);

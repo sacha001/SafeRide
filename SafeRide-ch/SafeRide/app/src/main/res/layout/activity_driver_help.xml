@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4D000000"
+    android:background="#cc393939"
     tools:context="com.example.ssilance.saferide.DriverMainActivity">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/driverLinearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="419dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,126 +23,211 @@
         android:layout_width="match_parent"
 
         android:layout_height="match_parent"
-        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="0dp"><![CDATA[android:layout_height="match_parent"> ]]>
+        tools:layout_editor_absoluteY="167dp"><![CDATA[android:layout_height="match_parent"> ]]>
 
 
 
-        <ImageView
-            android:id="@+id/Add_Image"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="add "
-            android:cropToPadding="true"
-            android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/ic_launcher_add1"/>
+                <Button
+                    android:id="@+id/OK"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
 
-        <Button
-            android:id="@+id/OK"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:background="@color/colorAccent"
-            android:text="X" />
+                    android:background="@color/colorAccent"
+                    android:text="X"
+                    tools:layout_editor_absoluteX="364dp"
+                    tools:layout_editor_absoluteY="0dp" />
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/action_b"
-            android:layout_alignLeft="@+id/action_b"
-            android:layout_alignStart="@+id/action_b"
-            fab:fab_colorNormal="@color/colorAccent"
-            fab:fab_colorPressed="@color/white_pressed"
-            fab:fab_icon="@drawable/ic_pencil" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:orientation="vertical">
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/action_b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/OK"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="33dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            fab:fab_colorNormal="@color/colorAccent"
-            fab:fab_colorPressed="@color/white_pressed"
-            fab:fab_icon="@mipmap/ic_fivo"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
 
-        <TextView
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            <ImageView
+                android:id="@+id/Add_Image"
+                android:layout_width="100dp"
+                android:layout_height="95dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="add "
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher_add1" />
 
-            android:layout_below="@+id/Add_Image"
-            android:layout_centerHorizontal="true"
-            android:text="ADD a passenger"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="21dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Add_Image"
+                android:layout_marginTop="-20dp"
+                android:layout_centerHorizontal="true"
+                android:text="ADD a passenger"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/add2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/add3"
-            android:layout_marginTop="22dp"
-            android:layout_toLeftOf="@+id/menuX"
-            android:layout_toStartOf="@+id/menuX"
-            android:text="VIEW menu items"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="21dp"
-            android:textStyle="bold" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/routeAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_size="mini"
+                fab:fab_icon="@drawable/ic_directions_white_24px" />
 
-        <TextView
-            android:id="@+id/add4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/action_a"
-            android:layout_alignLeft="@+id/add3"
-            android:layout_alignStart="@+id/add3"
-            android:layout_marginBottom="21dp"
-            android:text="Custom message"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="21dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/add2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/routeAll"
+                android:layout_centerHorizontal="true"
+                android:text="Map All Addresses"
+                android:layout_marginTop="-9dp"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/add3"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_alignBottom="@+id/action_b"
-            android:layout_toLeftOf="@+id/action_b"
-            android:layout_toStartOf="@+id/action_b"
-            android:text="Arriving in 5 mins"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="21dp"
-            android:textStyle="bold" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_a"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignTop="@+id/add3"
+                android:layout_toEndOf="@+id/Add_Image"
+                android:layout_toRightOf="@+id/Add_Image"
+                android:cropToPadding="true"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_icon="@drawable/ic_pencil"
+                fab:fab_size="mini" />
 
-        <ImageView
-            android:id="@+id/menuX"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@+id/add3"
-            android:layout_toEndOf="@+id/Add_Image"
-            android:layout_toRightOf="@+id/Add_Image"
-            android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/ic_launcher_menu1" />
+            <TextView
+                android:id="@+id/add6"
+                android:layout_marginTop="-9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_a"
+                android:layout_centerHorizontal="true"
+                android:text="Send Custom Message"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:cropToPadding="true"
+                android:tint="@android:color/white"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_icon="@mipmap/ic_launcher_five1"
+                fab:fab_size="mini" />
+
+            <TextView
+                android:id="@+id/add4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/action_b"
+                android:layout_marginTop="-9dp"
+                android:layout_centerHorizontal="true"
+                android:text="Arriving in 5 minutes"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/setTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_icon="@mipmap/ic_launcherclock1"
+                fab:fab_size="mini"
+                android:scaleType="centerCrop"/>
+
+
+            <TextView
+                android:id="@+id/add7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/setTime"
+                android:layout_centerHorizontal="true"
+                android:text="Enter Estimated Time of Arrival"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="-9dp"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:id="@+id/menuX"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-10dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="add "
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher_menu1" />
+
+            <TextView
+                android:id="@+id/add8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/setTime"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-20dp"
+                android:text="To View Menu"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/add9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add8"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="10dp"
+                android:text="Long-press to delete address"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/add10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add8"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+
+                android:text="Select address to view on map"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/add11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add8"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+
+                android:text="Select reset icon on menu bar to delete all"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+        </LinearLayout>
 
 
     </RelativeLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

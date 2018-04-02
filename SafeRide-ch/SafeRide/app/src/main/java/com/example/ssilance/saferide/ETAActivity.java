@@ -61,12 +61,14 @@ public class ETAActivity extends Activity {
 
                     int add1 = Integer.parseInt(getTheMess);
                     Calendar now = Calendar.getInstance();
-                    now.add(Calendar.MINUTE, add1);
                     SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                    String actualtime = df.format(now.getTime());
+                    now.add(Calendar.MINUTE, add1);
+
                     String stringToPass = df.format(now.getTime());
 
                     myFirebaseRef.child("eta").setValue(stringToPass);
-                    myFirebaseRef.child("message").setValue("SafeRide has departed.");
+                    myFirebaseRef.child("message").setValue(actualtime + "  SafeRide has departed.");
                     finish();
                 }
 
