@@ -65,6 +65,7 @@ public class DriverMainActivity extends AppCompatActivity {
     private Firebase myFirebaseRef;
     private final int REQUEST_CODE = 1;
     private DatabaseHandler db;
+    private SimpleAdapter adapter;
     //private FloatingActionButton sendNotification;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -81,7 +82,7 @@ public class DriverMainActivity extends AppCompatActivity {
         riderData = db.getList();
         String[] from = {"name", "address"};
         int[] to = {R.id.nameText, R.id.addressText};
-        final SimpleAdapter adapter = new SimpleAdapter(this, riderData, R.layout.activity_listview, from, to);
+        adapter  = new SimpleAdapter(this, riderData, R.layout.activity_listview, from, to);
 
         listView = (ListView) findViewById(R.id.mobile_list);
 
@@ -238,13 +239,14 @@ public class DriverMainActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
 
                     String nameString = data.getStringExtra("NAME_STRING");
-                    String addressString = data.getStringExtra("ADDRESS_STRING"); //TODO sometimes pauses here..
+                    String addressString = data.getStringExtra("ADDRESS_STRING");
 
                     if(!addressString.equals(null) && !addressString.equals("")){
                         Map m = new HashMap();
                         m.put("name",nameString);
                         m.put("address",addressString);
                         riderData.add(m);
+                        adapter.notifyDataSetChanged();
                         db.addListItem(m);
                         countListView();
                     }
@@ -274,6 +276,7 @@ public class DriverMainActivity extends AppCompatActivity {
                         m.put("name",nameString);
                         m.put("address",addressString);
                         riderData.add(m);
+                        adapter.notifyDataSetChanged();
                         db.addListItem(m);
                     }
                 } else {

@@ -1,5 +1,6 @@
 package com.example.ssilance.saferide;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +12,18 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.firebase.client.DataSnapshot;
@@ -25,6 +32,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -41,9 +49,15 @@ public class RiderMainActivity extends AppCompatActivity {
     private TextView capacity;
     private Firebase myFirebaseRef;
     public static final String MESSAGE = "Message";
+    public static final int ADD_ADDRESS = 1;
     private SharedPreferences.Editor editor;
     private final int REQUEST_CODE = 1;
     private FloatingActionButton mInfo;
+    private ArrayList<String> addressList;
+    private DatabaseHandler db;
+    private ListView listView;
+    private ArrayAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,16 +109,72 @@ public class RiderMainActivity extends AppCompatActivity {
                 startActivity(intent2);
            }
         });
-        Button qrCode = (Button) findViewById(R.id.qrBtn);
-        qrCode.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent2 = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
-                startActivity(intent2);
+
+        listen();
+
+        addressList = new ArrayList<>();
+        addressList.add(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS", ""));
+        db = new DatabaseHandler(this);
+        addressList.addAll(db.getRiderAddressesList());
+
+        adapter = new ArrayAdapter<String>(this,
+                               R.layout.rider_listview,R.id.text_view_id, addressList);
+
+        listView = (ListView) findViewById(R.id.addressList);
+
+        listView.setAdapter(adapter);
+        Button addAddress = new Button(this);
+        addAddress.setText("+");
+        addAddress.setBackgroundColor(getResources().getColor(R.color.grey));
+        addAddress.setTextColor(getResources().getColor(R.color.colorAccent));
+        addAddress.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 35);
+        listView.addFooterView(addAddress);
+        listView.setOnItemClickListener(addressClickedHandler);
+
+        addAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RiderMainActivity.this, AddNewAddressActivity.class);
+                startActivityForResult(intent,ADD_ADDRESS);
+
             }
         });
 
-        listen();
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position > 0) {
+                    db.deleteRiderAddressItem(adapter.getItem(position).toString());
+                    addressList.remove(position);
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(RiderMainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(RiderMainActivity.this, "You can't delete your main address!", Toast.LENGTH_LONG).show();
+
+                }
+                return true;
+
+            }
+        });
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ADD_ADDRESS) {
+            if (resultCode == Activity.RESULT_OK) {
+                String address = data.getStringExtra("ADDRESS_STRING");
+                adapter.add(address);
+                db.addRiderAddress(address);
+            }
+        }
+    }
+    private AdapterView.OnItemClickListener addressClickedHandler = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id) {
+            Intent intent2 = new Intent(RiderMainActivity.this, GenerateQRCodeActivity.class);
+            intent2.putExtra("ADDRESS", addressList.get(position));
+            startActivity(intent2);;
+        }
+    };
 
     public void listen()
     {

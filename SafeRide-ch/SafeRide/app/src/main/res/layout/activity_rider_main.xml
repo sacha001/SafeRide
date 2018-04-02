@@ -13,15 +13,6 @@
         android:layout_height="fill_parent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="16dp">
-        <Button
-            android:id="@+id/qrBtn"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="QR Code"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="16dp" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -156,19 +147,20 @@
                 </LinearLayout>
 
         </LinearLayout>
-
+            <ListView
+                android:id="@+id/addressList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"></ListView>
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/linearLayout2"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/linearLayout2"
-            android:layout_marginBottom="53dp"
-            android:layout_marginLeft="112dp"
-            android:layout_marginStart="112dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
             android:clickable="true"
             android:elevation="4dp"
             app:srcCompat="@android:drawable/ic_dialog_info" />

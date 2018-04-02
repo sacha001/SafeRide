@@ -36,6 +36,11 @@
             android:theme="@style/AppTheme.PopupTheme"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".AddNewAddressActivity"
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity
             android:name=".AddByAddressOrQRActivity"

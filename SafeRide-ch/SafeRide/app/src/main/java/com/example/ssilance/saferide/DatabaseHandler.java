@@ -27,6 +27,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Database table name
     private static final String TABLE_LIST = "destinations";
+    private static final String RIDER_ADDRESSES = "addresses";
+
 
     // Table Columns names
     private static final String KEY_ID = "id";
@@ -44,7 +46,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_LIST_TABLE = "CREATE TABLE "+ TABLE_LIST + "(" + KEY_ID
                 + " INTEGER, " + KEY_NAME + " TEXT, "+ KEY_ADDRESS +" TEXT)";
 
+        String CREATE_RIDER_ADDRESSES = "CREATE TABLE "+ RIDER_ADDRESSES + "(" + KEY_ID
+                + " INTEGER, " + KEY_ADDRESS + " TEXT)";
+
         db.execSQL(CREATE_LIST_TABLE);
+        db.execSQL(CREATE_RIDER_ADDRESSES);
+
+
     }
 
     // Upgrading database
@@ -52,6 +60,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIST);
+        db.execSQL("DROP TABLE IF EXISTS " + RIDER_ADDRESSES);
 
         // Create tables again
         onCreate(db);
@@ -71,6 +80,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
+    void addRiderAddress(String listItem) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_ADDRESS, listItem);
+
+        db.insert(RIDER_ADDRESSES, null, values);
+
+        db.close(); // Closing database connection
+    }
+    ArrayList<String> getRiderAddressesList(){
+        String selectQuery = "SELECT  * FROM " + RIDER_ADDRESSES;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<String> list = new ArrayList<String>();
+        while(cursor.moveToNext()) {
+
+            list.add(cursor.getString(1));
+        }
+        cursor.close();
+        db.close();
+        return list;
+    }
 
     ArrayList<Map<String, String>> getList(){
         String selectQuery = "SELECT  * FROM " + TABLE_LIST;
@@ -87,6 +121,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return list;
+    }
+
+    void deleteRiderAddressItem(String item){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM "+ RIDER_ADDRESSES + " WHERE "+ KEY_ADDRESS +" = ?";
+        db.execSQL(query , new String[]{item});
+        db.close();
     }
 
     void deleteItem(Map<String, String> item){

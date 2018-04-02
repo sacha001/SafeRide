@@ -36,8 +36,7 @@ public class GenerateQRCodeActivity extends Activity {
         imageView = (ImageView)findViewById(R.id.imageView);
         String nameString = PreferenceManager.
                 getDefaultSharedPreferences(getApplicationContext()).getString("NAME","");
-        String addressString = PreferenceManager.
-                getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS","");
+        String addressString = getIntent().getStringExtra("ADDRESS");
 
         try {
             JSONObject json = new JSONObject();
