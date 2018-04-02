@@ -88,10 +88,13 @@
             android:theme="@style/AppTheme.PopupTheme"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".RiderHelpActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:screenOrientation="portrait">
-        </activity>
+        <activity
+            android:name=".RiderHelpActivity"
+            android:theme="@style/AppTheme.PopupTheme"
+            android:screenOrientation="portrait" />
+
+
     </application>
+
 
 </manifest>

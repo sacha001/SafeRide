@@ -37,7 +37,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="8dp"
 
-                    android:background="@color/colorAccent"
+                    android:background="@color/colorPrimaryDark"
                     android:text="X"
                     tools:layout_editor_absoluteX="364dp"
                     tools:layout_editor_absoluteY="0dp" />

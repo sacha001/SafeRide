@@ -5,14 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+ >
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp">
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -26,7 +27,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -43,7 +44,7 @@
                     android:layout_marginTop="5dp"
                     android:text="Latest News"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -55,8 +56,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_below="@+id/header2"
                     android:layout_marginTop="4dp"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:text="Waiting for news"
+                    android:inputType="textMultiLine"
                     android:textColor="@color/white"
                     android:textStyle="italic"/>
             </LinearLayout>
@@ -92,7 +94,7 @@
                     android:text="Available Seats"
                     android:textColor="@color/white"
                     android:background="@drawable/underline"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -106,7 +108,7 @@
                     android:layout_marginTop="4dp"
                     android:text="5"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="24dp" />
 
             </LinearLayout>
 
@@ -127,7 +129,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Time of Arrival"
                         android:textColor="@color/white"
-                        android:textSize="20dp"
+                        android:textSize="22dp"
                         android:background="@drawable/underline"
                         android:textStyle="bold" />
 
@@ -141,12 +143,25 @@
                         android:layout_marginTop="4dp"
                         android:text="Waiting for data."
                         android:textColor="@color/white"
-                        android:textSize="18dp"
+                        android:textSize="24dp"
                         android:textStyle="italic" />
 
                 </LinearLayout>
 
         </LinearLayout>
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="30dp"
+                android:text="ADDRESS(ES)"
+                android:background="@drawable/roundbox"
+                android:textColor="@color/white"
+                android:textSize="22dp"
+                android:textStyle="bold" />
             <ListView
                 android:id="@+id/addressList"
                 android:layout_width="match_parent"
@@ -163,6 +178,7 @@
             android:layout_marginLeft="15dp"
             android:clickable="true"
             android:elevation="4dp"
+            app:fab_size="mini"
             app:srcCompat="@android:drawable/ic_dialog_info" />
 
     </RelativeLayout>

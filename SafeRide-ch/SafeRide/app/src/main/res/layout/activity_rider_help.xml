@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4D000000">
+    android:background="#cc393939"
+   >
 
     <LinearLayout
         android:id="@+id/riderLinearLayout"
@@ -26,63 +27,114 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="160dp"><![CDATA[android:layout_height="match_parent"> ]]>
 
-
-
-        <ImageView
-            android:id="@+id/Add_Image"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:adjustViewBounds="true"
-            android:contentDescription="add"
-            android:cropToPadding="true"
-            android:scaleType="centerCrop"
-            app:srcCompat="@mipmap/ic_launcher_add1" />
-
         <Button
             android:id="@+id/OK"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_marginVertical="8dp"
+            android:layout_alignParentTop="true"
             android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
 
-            android:background="@color/colorAccent"
-            android:text="X" />
-
-        <TextView
-            android:id="@+id/help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/Add_Image"
+            android:background="@color/colorPrimaryDark"
+            android:text="X"
+            tools:layout_editor_absoluteX="364dp"
+            tools:layout_editor_absoluteY="0dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/Add_Image"
+            android:layout_width="100dp"
+            android:layout_height="95dp"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-
-            android:layout_marginBottom="29dp"
-
-
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"
-            android:text="HELP MENU"
-            android:textColor="@color/colorAccent"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
-
+            android:layout_marginTop="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="add "
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher_add1" />
 
         <TextView
-            android:id="@+id/help"
+            android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Add_Image"
+            android:layout_marginTop="-20dp"
             android:layout_centerHorizontal="true"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp"
-            android:text="Add an address"
-            android:textColor="@color/colorAccent"
-            android:textSize="21dp"
-            android:textStyle="bold" />
+            android:text="ADD a passenger"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="18dp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:clickable="true"
+                android:elevation="4dp"
+                fab:fab_size="mini"
+                android:layout_marginTop="5dp"
+                app:srcCompat="@android:drawable/ic_dialog_info" />
+
+            <TextView
+                android:id="@+id/add5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Add_Image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Hours of Operation"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorBackground"
+                android:backgroundTint="@color/cardview_shadow_end_color"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_pencil" />
+
+            <TextView
+                android:id="@+id/add13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Add_Image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Edit name or main address"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/add14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Add_Image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="To View QRcode select address"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
+
+            <TextView
+                android:id="@+id/add14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Add_Image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Long-press to delete address"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+        </LinearLayout>
 
 
 
