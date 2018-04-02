@@ -1,6 +1,7 @@
 package com.example.ssilance.saferide;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import com.firebase.client.Firebase;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -45,14 +48,21 @@ public class SendMessageActivity extends Activity {
         driverLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String currentTime = DateFormat.getTimeInstance().format(new Date());
+                Calendar now = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                String actualtime = df.format(now.getTime());
                 EditText mess = (EditText) findViewById(R.id.writeMessage);
+                String getMessage = mess.getText().toString();
+                if(!getMessage.equals("")) {
+                    getMessage = actualtime + " " + mess.getText().toString();
 
-                String getMessage = currentTime + " " + mess.getText().toString();
+                    myFirebaseRef.child("message").setValue(getMessage);
+                    finish();
+                }else{
+                    mess.setHint("Don't forget to enter something!");
+                    mess.setHintTextColor(Color.RED);
+                }
 
-                myFirebaseRef.child("message").setValue(getMessage);
-
-                finish();
             }
         });
     }

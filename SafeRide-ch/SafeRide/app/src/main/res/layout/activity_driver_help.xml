@@ -26,8 +26,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="167dp"><![CDATA[android:layout_height="match_parent"> ]]>
 
-
-
                 <Button
                     android:id="@+id/OK"
                     android:layout_width="40dp"
@@ -37,7 +35,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="8dp"
 
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/cardview_shadow_start_color"
                     android:text="X"
                     tools:layout_editor_absoluteX="364dp"
                     tools:layout_editor_absoluteY="0dp" />
@@ -55,7 +53,7 @@
                 android:layout_height="95dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="add "
                 android:cropToPadding="true"
@@ -67,9 +65,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/Add_Image"
-                android:layout_marginTop="-20dp"
                 android:layout_centerHorizontal="true"
-                android:text="ADD a passenger"
+                android:layout_marginTop="-20dp"
+                android:text="To Add a Passenger"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18dp" />
 
@@ -133,9 +131,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/action_b"
-                android:layout_marginTop="-9dp"
                 android:layout_centerHorizontal="true"
-                android:text="Arriving in 5 minutes"
+                android:layout_marginTop="-9dp"
+                android:text="Arriving in 5 Minutes Message"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18dp" />
 
@@ -157,9 +155,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/setTime"
                 android:layout_centerHorizontal="true"
-                android:text="Enter Estimated Time of Arrival"
+                android:layout_marginTop="-10dp"
                 android:textColor="@color/cardview_light_background"
-                android:layout_marginTop="-9dp"
+                android:text="To Enter Estimated Time of Arrival"
                 android:textSize="18dp" />
 
             <ImageView
@@ -168,7 +166,7 @@
                 android:layout_height="100dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="-10dp"
+                android:layout_marginTop="-20dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="add "
                 android:cropToPadding="true"
@@ -186,16 +184,39 @@
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18dp" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/cardview_shadow_start_color"
+                android:scaleType="centerCrop"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/white_pressed"
+                fab:fab_icon="@mipmap/ic_launcher_foreground_r"
+                fab:fab_size="mini"
+                fab:srcCompat="@mipmap/ic_launcher_foreground_r" />
+
+            <TextView
+                android:id="@+id/add11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add8"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+
+                android:text="Hit reset icon at the end of each ride."
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
+
             <TextView
                 android:id="@+id/add9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/add8"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:paddingLeft="50dp"
                 android:paddingRight="10dp"
-                android:text="Long-press to delete address"
+                android:text="Long-press to delete address."
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18dp" />
 
@@ -207,19 +228,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
 
-                android:text="Select address to view on map"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/add11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/add8"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="0dp"
-
-                android:text="Select reset icon on menu bar to delete all"
+                android:text="Select address of choice to view on map. "
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18dp" />
 

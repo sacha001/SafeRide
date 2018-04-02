@@ -136,12 +136,16 @@ public class DriverMainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Calendar now = Calendar.getInstance();
-                now.add(Calendar.MINUTE, 5);
+
+
                 SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                String currentTime =  df.format(now.getTime());
+                now.add(Calendar.MINUTE, 5);
                 String time = df.format(now.getTime());
-                String message = time + "  Safe Ride will be back in 5 minutes.";
+                String message = currentTime + "  Safe Ride will be back in 5 minutes.";
                 myFirebaseRef.child("eta").setValue(time);
                 myFirebaseRef.child("message").setValue(message);
+                Toast.makeText(DriverMainActivity.this, "5 min notification has been sent!", Toast.LENGTH_LONG).show();
             }
         });
 

@@ -58,19 +58,16 @@ public class AddNewAddressActivity extends Activity {
                 String addressString = addressInput.getText().toString();
 
                 if(addressString.equals("")) {
-                    addressInput.setHint("We need your address.");
+                    addressInput.setHint("We need a address.");
                     addressInput.setHintTextColor(Color.RED);
                 } else {
                     Intent resultIntent = new Intent();
-
-
                     resultIntent.putExtra("ADDRESS_STRING", addressString);
-
                     setResult(Activity.RESULT_OK, resultIntent);
-                    finish();
+
                 }
 
-
+                finish();
 
             }
         });

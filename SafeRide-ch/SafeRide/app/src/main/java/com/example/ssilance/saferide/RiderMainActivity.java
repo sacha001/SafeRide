@@ -214,14 +214,6 @@ public class RiderMainActivity extends AppCompatActivity {
                 else {text = v.toString();}
 
                 etatext.setText(text);
-                NotificationCompat.Builder mBuilder = mBuilder = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.mipmap.ic_launcher).setContentTitle(text);
-                NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.notify(1, mBuilder.build());
-                editor = getSharedPreferences(MESSAGE, MODE_PRIVATE).edit();
-                editor.putString("eta", text);
-                editor.apply();
-
-
             }
 
             @Override

@@ -36,49 +36,51 @@
             android:layout_marginHorizontal="8dp"
             android:layout_marginVertical="8dp"
 
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/cardview_shadow_start_color"
             android:text="X"
             tools:layout_editor_absoluteX="364dp"
             tools:layout_editor_absoluteY="0dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center|top"
             android:orientation="vertical">
-        <ImageView
-            android:id="@+id/Add_Image"
-            android:layout_width="100dp"
-            android:layout_height="95dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="add "
-            android:cropToPadding="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher_add1" />
 
-        <TextView
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Add_Image"
-            android:layout_marginTop="-20dp"
-            android:layout_centerHorizontal="true"
-            android:text="ADD a passenger"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="18dp" />
+            <ImageView
+                android:id="@+id/Add_Image"
+                android:layout_width="100dp"
+                android:layout_height="95dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="add "
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher_add1" />
+
+            <TextView
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Add_Image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-20dp"
+                android:text="To Add an Address"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
                 android:clickable="true"
                 android:elevation="4dp"
-                fab:fab_size="mini"
-                android:layout_marginTop="5dp"
-                app:srcCompat="@android:drawable/ic_dialog_info" />
+                app:srcCompat="@android:drawable/ic_dialog_info"
+                fab:fab_size="mini" />
 
             <TextView
                 android:id="@+id/add5"
@@ -108,7 +110,7 @@
                 android:layout_below="@+id/Add_Image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="Edit name or main address"
+                android:text="To Edit Name or Main Address"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18dp" />
 
@@ -119,7 +121,7 @@
                 android:layout_below="@+id/Add_Image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="To View QRcode select address"
+                android:text="To view QR code select an address"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18dp" />
 

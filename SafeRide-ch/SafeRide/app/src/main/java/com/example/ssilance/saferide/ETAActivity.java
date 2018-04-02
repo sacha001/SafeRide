@@ -56,8 +56,7 @@ public class ETAActivity extends Activity {
                    mess.setHint("Don't forget to enter something!");
                     mess.setHintTextColor(Color.RED);
 
-                }
-                else {
+                } else {
 
                     int add1 = Integer.parseInt(getTheMess);
                     Calendar now = Calendar.getInstance();
@@ -68,7 +67,7 @@ public class ETAActivity extends Activity {
                     String stringToPass = df.format(now.getTime());
 
                     myFirebaseRef.child("eta").setValue(stringToPass);
-                    myFirebaseRef.child("message").setValue(actualtime + "  SafeRide has departed.");
+                    myFirebaseRef.child("message").setValue(actualtime + "  SafeRide is on the move. ETA is " + stringToPass + ".");
                     finish();
                 }
 
