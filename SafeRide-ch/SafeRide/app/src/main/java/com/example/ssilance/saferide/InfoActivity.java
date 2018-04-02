@@ -11,8 +11,10 @@ import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -55,22 +57,10 @@ public class InfoActivity extends Activity {
         mFriday = (TextView) findViewById(R.id.setFri);
         mSunday = (TextView) findViewById(R.id.setSunday);
         listen();
-       // configureDoneBtn();
+
     }
 
-   // private void configureDoneBtn(){
-    //    Button driverLoginBtn = (Button) findViewById(R.id.doneBtnETA);
-    //    driverLoginBtn.setOnClickListener(new View.OnClickListener() {
-       //     @Override
-    //        public void onClick(View view) {
 
-     //               finish();
-
-
-
-     //       }
-     //   });
-   // }
     public void listen()
     {
         myFirebaseRef.child("Monday-Thursday").addValueEventListener(new ValueEventListener() {
