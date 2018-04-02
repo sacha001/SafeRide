@@ -43,7 +43,7 @@ public class EditNameActivity extends Activity {
         int height = dm.heightPixels;
         int width = dm.widthPixels;
 
-        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.3));
+        getWindow().setLayout((int) (width * 0.8), (int) (height * 0.4));
 
         configureDoneBtn();
     }
@@ -55,14 +55,25 @@ public class EditNameActivity extends Activity {
             @Override
             public void onClick(View view) {
                 EditText nameInput = (EditText) findViewById(R.id.nameInput);
+                EditText addressInput = findViewById(R.id.addressInput);
+
 
                 String nameString = nameInput.getText().toString();
+                String addString = addressInput.getText().toString();
 
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("NAME", nameString).apply();
-
-               // PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("NAME", nameString).apply();
-
+                if(addString.equals("")){
+                    addressInput.setHintTextColor(Color.RED);
+                    addressInput.setHint("We need a main address!");
+                }
+                if(nameString.equals("")) {
+                    nameInput.setHintTextColor(Color.RED);
+                    nameInput.setHint("Please enter a name!");
+                }
+                if (!nameString.equals("") && !addString.equals("")) {
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("NAME", nameString).apply();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("ADDRESS", addString).apply();
                     finish();
+                }
 
             }
         });

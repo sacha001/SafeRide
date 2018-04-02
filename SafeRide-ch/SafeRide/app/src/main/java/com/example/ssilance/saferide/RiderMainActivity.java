@@ -253,6 +253,11 @@ public class RiderMainActivity extends AppCompatActivity {
         ActionBar mActionBar = getSupportActionBar();
         String nameString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("NAME", "");
         mActionBar.setTitle("Welcome " + nameString);
+        db.deleteRiderAddressItem(adapter.getItem(0).toString());
+        addressList.remove(0);
+        adapter.notifyDataSetChanged();
+        addressList.add(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS", ""));
+
     }
 
     @Override
