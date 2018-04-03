@@ -2,10 +2,13 @@ package com.example.ssilance.saferide;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -21,6 +24,7 @@ import org.json.JSONObject;
 public class GenerateQRCodeActivity extends Activity {
     private ImageView imageView;
     public final static int QRcodeWidth = 500 ;
+    private ProgressBar spinner;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,15 +42,18 @@ public class GenerateQRCodeActivity extends Activity {
                 getDefaultSharedPreferences(getApplicationContext()).getString("NAME","");
         String addressString = getIntent().getStringExtra("ADDRESS");
 
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+
         try {
             JSONObject json = new JSONObject();
             json.put("name", nameString);
             json.put("address", addressString);
 
 
-            Bitmap bitmap = TextToImageEncode(json.toString());
+            //Bitmap bitmap = TextToImageEncode(json.toString());
 
-            imageView.setImageBitmap(bitmap);
+            //imageView.setImageBitmap(bitmap);
+            new GenerateCodeTask().execute(json.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,6 +91,21 @@ public class GenerateQRCodeActivity extends Activity {
 
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
+    }
+
+    private class GenerateCodeTask extends AsyncTask<String, Void, Bitmap> {
+        protected Bitmap doInBackground(String... Value) {
+            spinner.setVisibility(View.VISIBLE);
+            try {
+                return TextToImageEncode(Value[0]);
+            } catch (WriterException e) {
+                return null;
+            }
+        }
+        protected void onPostExecute(Bitmap result) {
+            spinner.setVisibility(View.GONE);
+            imageView.setImageBitmap(result);
+        }
     }
 }
 

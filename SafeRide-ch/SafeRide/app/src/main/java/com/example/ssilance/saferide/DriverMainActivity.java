@@ -57,6 +57,7 @@ public class DriverMainActivity extends AppCompatActivity {
     private static final int ADD_BY_ADDRESS = 1;
     private static final int ADD_BY_QR = 49374;
     private static final int ADDRESS_OR_QR = 2;
+    private static final int CONFIRM_RESET = 3;
     private final int CAPACITY = 5;
     private ArrayList<Map<String,String>> riderData;
     private IntentIntegrator qrScan;
@@ -102,8 +103,13 @@ public class DriverMainActivity extends AppCompatActivity {
         addRiderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DriverMainActivity.this, AddByAddressOrQRActivity.class);
-                startActivityForResult(intent,ADDRESS_OR_QR);
+                if(riderData.size() < CAPACITY) {
+                    Intent intent = new Intent(DriverMainActivity.this, AddByAddressOrQRActivity.class);
+                    startActivityForResult(intent, ADDRESS_OR_QR);
+                } else {
+                    Toast.makeText(DriverMainActivity.this, "You have reached max capacity!", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
 
@@ -196,6 +202,28 @@ public class DriverMainActivity extends AppCompatActivity {
                         qrScan.initiateScan();
                 } else if (resultCode == 2){
                         startActivityForResult(new Intent(DriverMainActivity.this, AddRiderActivity.class), ADD_BY_ADDRESS);
+            }
+        }
+        if(requestCode == CONFIRM_RESET){
+            if (resultCode == 1){
+                if(riderData.size() == 0)
+                {
+                    Toast.makeText(DriverMainActivity.this, "Nothing to delete", Toast.LENGTH_LONG).show();
+                }else{
+                    for (int i=0;i<riderData.size();i++){
+                        db.deleteItem(riderData.get(i));
+                    }
+
+                    riderData.clear();
+                    adapter.notifyDataSetChanged();
+                    Calendar now = Calendar.getInstance();
+                    SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                    String actualtime = df.format(now.getTime());
+                    myFirebaseRef.child("eta").setValue("TBD");
+                    myFirebaseRef.child("message").setValue(actualtime + " Safe Ride is loading!");
+                    countListView();
+                    Toast.makeText(DriverMainActivity.this, "Reset & Loading message sent", Toast.LENGTH_LONG).show();
+                }
             }
         }
         switch(requestCode) {
@@ -291,24 +319,7 @@ public class DriverMainActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.resetItem) {
 
-            if(riderData.size() == 0)
-            {
-                Toast.makeText(DriverMainActivity.this, "Nothing to delete", Toast.LENGTH_LONG).show();
-            }else{
-                for (int i=0;i<riderData.size();i++){
-                    db.deleteItem(riderData.get(i));
-                }
-
-                riderData.clear();
-                adapter.notifyDataSetChanged();
-                Calendar now = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
-                String actualtime = df.format(now.getTime());
-                myFirebaseRef.child("eta").setValue("TBD");
-                myFirebaseRef.child("message").setValue(actualtime + " Safe Ride is loading!");
-                countListView();
-                Toast.makeText(DriverMainActivity.this, "Reset & Loading message sent", Toast.LENGTH_LONG).show();
-            }
+            startActivityForResult(new Intent(DriverMainActivity.this, ConfirmResetActivity.class), CONFIRM_RESET);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
