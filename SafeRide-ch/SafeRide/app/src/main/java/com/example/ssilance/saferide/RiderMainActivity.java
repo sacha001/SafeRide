@@ -163,7 +163,8 @@ public class RiderMainActivity extends AppCompatActivity {
         if (requestCode == ADD_ADDRESS) {
             if (resultCode == Activity.RESULT_OK) {
                 String address = data.getStringExtra("ADDRESS_STRING");
-                adapter.add(address);
+                addressList.add(address);
+                adapter.notifyDataSetChanged();
                 db.addRiderAddress(address);
             }
         }
@@ -252,12 +253,11 @@ public class RiderMainActivity extends AppCompatActivity {
         super.onResume();
         ActionBar mActionBar = getSupportActionBar();
         String nameString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("NAME", "");
-        mActionBar.setTitle("Welcome " + nameString);
-        db.deleteRiderAddressItem(adapter.getItem(0).toString());
-        addressList.remove(0);
-        adapter.notifyDataSetChanged();
-        addressList.add(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS", ""));
+        String addressString = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ADDRESS", "");
 
+        mActionBar.setTitle("Welcome " + nameString);
+        addressList.set(0, addressString);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -274,7 +274,7 @@ public class RiderMainActivity extends AppCompatActivity {
             return true;
         }
         else if (item.getItemId() == R.id.riderHelpItem) {
-            startActivityForResult(new Intent(RiderMainActivity.this, RiderHelpActivity.class), REQUEST_CODE);
+            startActivity(new Intent(RiderMainActivity.this, RiderHelpActivity.class));
             return true;
         }
         else {
